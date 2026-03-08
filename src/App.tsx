@@ -23,7 +23,7 @@ const App = () => (
           <Header />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/term/:id" element={<TermDetail />} />
+            <Route path="/term/:word" element={<TermDetail />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/category/:slug" element={<CategoryDetail />} />
             <Route path="*" element={<NotFound />} />
