@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useCategories, useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { ArrowRight } from "lucide-react";
 
 const Categories = () => {
@@ -9,6 +10,12 @@ const Categories = () => {
   const s = t(locale);
   const { data: categories = [] } = useCategories(locale);
   const { data: terms = [] } = useTerms(locale);
+
+  usePageMeta({
+    title: `${s.allCategories} - Devtionary`,
+    description: s.heroSubtitle,
+    path: "/categories",
+  });
 
   return (
     <div className="container py-8">

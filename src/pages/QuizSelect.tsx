@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { ArrowLeft } from "lucide-react";
 
 export default function QuizSelect() {
@@ -10,6 +11,12 @@ export default function QuizSelect() {
   const { data: terms = [], isLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories(locale);
   const navigate = useNavigate();
+
+  usePageMeta({
+    title: `${s.quiz} - Devtionary`,
+    description: s.quizDescription,
+    path: "/quiz",
+  });
 
   if (isLoading) {
     return (
