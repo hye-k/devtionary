@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useTerms, useCategories, Term } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
@@ -24,11 +24,6 @@ function shuffle<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
-}
-
-function highlightTerm(code: string, word: string): string {
-  const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
-  return code.replace(regex, "___");
 }
 
 function generateQuestions(terms: Term[], count: number): QuizQuestion[] {
@@ -56,46 +51,37 @@ function generateQuestions(terms: Term[], count: number): QuizQuestion[] {
   });
 }
 
-type Phase = "select" | "quiz" | "result";
-
 const QUESTION_COUNT = 10;
 
 export default function Quiz() {
+  const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const { locale } = useLocale();
   const s = t(locale);
   const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories(locale);
 
-  const [phase, setPhase] = useState<Phase>("select");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const selectedCategory = slug === "all" ? null : slug ?? null;
+
+  const [phase, setPhase] = useState<"quiz" | "result">("quiz");
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
 
-  // Reset quiz when locale changes
+  // Generate questions when terms load or slug/locale changes
   useEffect(() => {
-    setPhase("select");
-    setSelectedCategory(null);
-    setQuestions([]);
-    setAnswers([]);
-    setCurrentQ(0);
-  }, [locale]);
-
-  const categoryTerms = useMemo(() => {
-    if (!selectedCategory) return terms;
-    return terms.filter((t) => t.categories.includes(selectedCategory));
-  }, [terms, selectedCategory]);
-
-  function startQuiz(catSlug: string | null) {
-    setSelectedCategory(catSlug);
-    const pool = catSlug ? terms.filter((t) => t.categories.includes(catSlug)) : terms;
+    if (terms.length === 0) return;
+    const pool = selectedCategory ? terms.filter((t) => t.categories.includes(selectedCategory)) : terms;
     const qs = generateQuestions(pool, QUESTION_COUNT);
-    if (qs.length === 0) return;
+    if (qs.length === 0) {
+      navigate("/quiz", { replace: true });
+      return;
+    }
     setQuestions(qs);
     setAnswers(new Array(qs.length).fill(null));
     setCurrentQ(0);
     setPhase("quiz");
-  }
+  }, [terms, slug, locale]);
 
   function selectAnswer(qIdx: number, optIdx: number) {
     setAnswers((prev) => {
@@ -109,12 +95,13 @@ export default function Quiz() {
     setPhase("result");
   }
 
-  function reset() {
-    setPhase("select");
-    setSelectedCategory(null);
-    setQuestions([]);
-    setAnswers([]);
+  function retry() {
+    const pool = selectedCategory ? terms.filter((t) => t.categories.includes(selectedCategory)) : terms;
+    const qs = generateQuestions(pool, QUESTION_COUNT);
+    setQuestions(qs);
+    setAnswers(new Array(qs.length).fill(null));
     setCurrentQ(0);
+    setPhase("quiz");
   }
 
   const score = useMemo(() => {
@@ -128,64 +115,10 @@ export default function Quiz() {
 
   const allAnswered = answers.every((a) => a !== null);
 
-  if (termsLoading) {
+  if (termsLoading || questions.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="font-mono text-muted-foreground animate-pulse">{s.loading}</p>
-      </div>
-    );
-  }
-
-  /* ── Category Selection ── */
-  if (phase === "select") {
-    return (
-      <div className="min-h-screen">
-        <div className="container py-10 space-y-8">
-          <div>
-            <Link
-              to="/"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mb-4"
-            >
-              <ArrowLeft className="h-3 w-3" /> {s.goHome}
-            </Link>
-            <h1 className="font-mono text-2xl md:text-3xl font-bold text-foreground flex items-center gap-2">
-              <span className="text-primary">$</span> {s.quiz}
-            </h1>
-            <p className="text-muted-foreground mt-2">{s.quizDescription}</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            <button
-              onClick={() => startQuiz(null)}
-              className="rounded-lg border border-primary/30 bg-card p-4 hover:border-primary hover:shadow-md transition-all text-left group"
-            >
-              <div className="text-2xl mb-2">🎲</div>
-              <h3 className="font-mono text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                {s.quizAllCategories}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                {s.termCount(terms.filter((t) => t.examples.length > 0).length)}
-              </p>
-            </button>
-            {categories.map((cat) => {
-              const count = terms.filter((t) => t.categories.includes(cat.slug) && t.examples.length > 0).length;
-              if (count < 4) return null;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => startQuiz(cat.slug)}
-                  className="rounded-lg border border-border bg-card p-4 hover:border-primary/50 hover:shadow-md transition-all text-left group"
-                >
-                  <div className="text-2xl mb-2">{cat.icon}</div>
-                  <h3 className="font-mono text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                    {cat.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-1">{s.termCount(count)}</p>
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </div>
     );
   }
@@ -196,8 +129,14 @@ export default function Quiz() {
     return (
       <div className="min-h-screen">
         <div className="container py-10 max-w-2xl space-y-6">
-          {/* Category & Progress */}
+          {/* Back link & Progress */}
           <div className="space-y-2">
+            <Link
+              to="/quiz"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mb-2"
+            >
+              <ArrowLeft className="h-3 w-3" /> {s.quiz}
+            </Link>
             <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
               <span>
                 {s.quizQuestion} {currentQ + 1} / {questions.length}
@@ -309,9 +248,14 @@ export default function Quiz() {
                   : s.quizKeepGoing}
             </p>
             <Progress value={(score / questions.length) * 100} className="h-3 max-w-xs mx-auto" />
-            <Button onClick={reset} variant="outline" className="mt-4">
-              <RotateCcw className="h-4 w-4 mr-1" /> {s.quizRetry}
-            </Button>
+            <div className="flex justify-center gap-3 mt-4">
+              <Button onClick={retry} variant="outline">
+                <RotateCcw className="h-4 w-4 mr-1" /> {s.quizRetry}
+              </Button>
+              <Button onClick={() => navigate("/quiz")} variant="ghost">
+                <ArrowLeft className="h-4 w-4 mr-1" /> {s.quiz}
+              </Button>
+            </div>
           </CardContent>
         </Card>
 

@@ -15,6 +15,7 @@ import TermDetail from "./pages/TermDetail";
 import Categories from "./pages/Categories";
 import CategoryDetail from "./pages/CategoryDetail";
 import Quiz from "./pages/Quiz";
+import QuizSelect from "./pages/QuizSelect";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
