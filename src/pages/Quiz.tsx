@@ -213,25 +213,11 @@ export default function Quiz() {
           <Card className="border-primary/20">
             <CardHeader className="pb-3">
               <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
-              <p className="text-sm font-semibold text-primary"></p>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* Example with blank */}
-              <div className="rounded-md bg-code-bg p-4 font-mono text-sm">
-                <code className="text-foreground">
-                  {q.exampleCode
-                    .split(" ")
-                    .map((word, idx) => (
-                      <span key={idx}>
-                        {idx > 0 && " "}
-                        {word === q.term.word ? (
-                          <span className="text-sm font-semibold text-primary">{word}</span>
-                        ) : (
-                          word
-                        )}
-                      </span>
-                    ))}
-                </code>
+              {/* Term word */}
+              <div className="rounded-md bg-code-bg p-6 text-center">
+                <span className="font-mono text-2xl font-bold text-primary">{q.term.word}</span>
               </div>
 
               {/* Options */}
