@@ -13,6 +13,7 @@ export interface TermTranslation {
   meaning_en: string;
   meaning_dev: string;
   abbreviation_of?: string | null;
+  examples?: TermExample[];
 }
 
 export interface Term {
