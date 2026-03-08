@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTerms, useCategories, Term } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
@@ -71,6 +71,15 @@ export default function Quiz() {
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
+
+  // Reset quiz when locale changes
+  useEffect(() => {
+    setPhase("select");
+    setSelectedCategory(null);
+    setQuestions([]);
+    setAnswers([]);
+    setCurrentQ(0);
+  }, [locale]);
 
   const categoryTerms = useMemo(() => {
     if (!selectedCategory) return terms;
