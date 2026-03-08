@@ -120,6 +120,9 @@ const strings = {
     tooltipQuiz: "용어 퀴즈 풀기",
     tooltipGithub: "버그 신고 · 기능 제안",
     tooltipLanguage: "언어 변경",
+    quizPromoTitle: "실력을 테스트해 보세요",
+    quizPromoDesc: "개발 용어, 얼마나 알고 계신가요? 퀴즈로 확인해 보세요!",
+    quizPromoStart: "퀴즈 시작",
   },
   ja: {
     categories: "カテゴリー",
