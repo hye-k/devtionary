@@ -64,7 +64,7 @@ export default function Quiz() {
   const { locale } = useLocale();
   const s = t(locale);
   const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
-  const { data: categories = [] } = useCategories();
+  const { data: categories = [] } = useCategories(locale);
 
   const [phase, setPhase] = useState<Phase>("select");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

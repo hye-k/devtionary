@@ -41,6 +41,41 @@ export type Database = {
         }
         Relationships: []
       }
+      category_translations: {
+        Row: {
+          category_id: string
+          created_at: string
+          description: string
+          id: string
+          locale: string
+          name: string
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          description: string
+          id?: string
+          locale?: string
+          name: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          locale?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "category_translations_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       term_translations: {
         Row: {
           abbreviation_of: string | null

@@ -30,7 +30,7 @@ const Index = () => {
   const { locale } = useLocale();
   const s = t(locale);
   const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
-  const { data: categories = [] } = useCategories();
+  const { data: categories = [] } = useCategories(locale);
   const [todayTerm, setTodayTerm] = useState<Term | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 

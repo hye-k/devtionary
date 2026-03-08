@@ -3,6 +3,7 @@ import { Volume2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Term } from "@/hooks/use-terms";
 import { useCategories } from "@/hooks/use-terms";
+import { useLocale } from "@/hooks/use-locale";
 
 function speakWord(word: string) {
   const utterance = new SpeechSynthesisUtterance(word);
@@ -12,7 +13,8 @@ function speakWord(word: string) {
 }
 
 export function TermCard({ term }: { term: Term }) {
-  const { data: categories = [] } = useCategories();
+  const { locale } = useLocale();
+  const { data: categories = [] } = useCategories(locale);
 
   return (
     <Link

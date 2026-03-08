@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 const Categories = () => {
   const { locale } = useLocale();
   const s = t(locale);
-  const { data: categories = [] } = useCategories();
+  const { data: categories = [] } = useCategories(locale);
   const { data: terms = [] } = useTerms(locale);
 
   return (

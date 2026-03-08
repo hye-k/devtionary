@@ -10,7 +10,7 @@ const CategoryDetail = () => {
   const { slug } = useParams();
   const { locale } = useLocale();
   const s = t(locale);
-  const { data: categories = [] } = useCategories();
+  const { data: categories = [] } = useCategories(locale);
   const { data: terms = [] } = useTerms(locale);
 
   const category = categories.find((c) => c.slug === slug);
