@@ -208,11 +208,7 @@ const Index = () => {
             </div>
             <div className="rounded-lg border border-primary/30 bg-card p-6">
               <p className="text-sm text-muted-foreground mb-3">{s.quizPrompt}</p>
-              {sampleQuizTerm.examples[0] && (
-                <div className="rounded-md bg-code-bg p-3 font-mono text-sm mb-4">
-                  <code className="text-foreground">{sampleQuizTerm.examples[0].code}</code>
-                </div>
-              )}
+              <p className="font-mono text-xl font-bold text-foreground mb-4">{sampleQuizTerm.word}</p>
               <div className="grid gap-2 sm:grid-cols-2">
                 {sampleChoices.map((choice, i) => {
                   const isCorrect = choice === sampleQuizTerm.meaning_dev;
