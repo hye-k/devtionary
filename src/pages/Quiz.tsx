@@ -164,15 +164,7 @@ export default function Quiz() {
           {/* Question Card */}
           <Card className="border-primary/20">
             <CardHeader className="pb-3">
-              <div className="flex flex-col gap-2">
-                <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
-                {selectedCategory && (
-                  <Badge variant="secondary" className="font-mono text-xs w-fit">
-                    {categories.find((c) => c.slug === selectedCategory)?.icon}{" "}
-                    {categories.find((c) => c.slug === selectedCategory)?.name}
-                  </Badge>
-                )}
-              </div>
+              <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Term word */}
