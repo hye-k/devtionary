@@ -39,7 +39,6 @@ const Index = () => {
     () => terms.slice((currentPage - 1) * TERMS_PER_PAGE, currentPage * TERMS_PER_PAGE),
     [terms, currentPage]
   );
-  const [todayTerm, setTodayTerm] = useState<Term | null>(null);
 
   useEffect(() => {
     if (terms.length > 0) {
