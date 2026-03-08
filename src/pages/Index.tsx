@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { TermCard } from "@/components/TermCard";
@@ -7,6 +7,15 @@ import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
 import { Volume2, Terminal, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 function speakWord(word: string) {
   const utterance = new SpeechSynthesisUtterance(word);
