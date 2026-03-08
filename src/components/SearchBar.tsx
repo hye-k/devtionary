@@ -53,7 +53,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
       </div>
 
       {open && filtered.length > 0 && (
-        <div className="absolute z-50 mt-2 w-full rounded-lg border border-border bg-popover shadow-xl overflow-hidden">
+        <div className="absolute z-50 mt-2 w-full max-h-[60vh] overflow-y-auto rounded-lg border border-border bg-popover shadow-xl">
           {filtered.map((t) => (
             <button
               key={t.id}
