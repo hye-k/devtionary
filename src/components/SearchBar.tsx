@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useTerms } from "@/hooks/use-terms";
+import { useLocale } from "@/hooks/use-locale";
 
 export function SearchBar({ className = "" }: { className?: string }) {
   const [query, setQuery] = useState("");
