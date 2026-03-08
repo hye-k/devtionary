@@ -12,6 +12,12 @@ export default function QuizSelect() {
   const { data: categories = [] } = useCategories(locale);
   const navigate = useNavigate();
 
+  usePageMeta({
+    title: `${s.quiz} - Devtionary`,
+    description: s.quizDescription,
+    path: "/quiz",
+  });
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">

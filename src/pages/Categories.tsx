@@ -11,6 +11,12 @@ const Categories = () => {
   const { data: categories = [] } = useCategories(locale);
   const { data: terms = [] } = useTerms(locale);
 
+  usePageMeta({
+    title: `${s.allCategories} - Devtionary`,
+    description: s.heroSubtitle,
+    path: "/categories",
+  });
+
   return (
     <div className="container py-8">
       <h1 className="font-mono text-2xl font-bold text-foreground mb-6">
