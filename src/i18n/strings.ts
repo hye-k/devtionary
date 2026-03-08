@@ -238,6 +238,7 @@ const strings = {
     quizPromoStart: "Lancer le quiz",
     quizMoreQuiz: "Plus de quiz",
     quizYourAnswer: "Votre réponse",
+    menu: "Menu",
   },
 } as const;
 
