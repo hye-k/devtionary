@@ -76,6 +76,7 @@ const strings = {
     quizPromoStart: "Start Quiz",
     quizMoreQuiz: "Try More Quizzes",
     quizYourAnswer: "Your answer",
+    menu: "Menu",
   },
   ko: {
     categories: "카테고리",
@@ -129,6 +130,7 @@ const strings = {
     quizPromoStart: "퀴즈 시작",
     quizMoreQuiz: "더 많은 퀴즈 풀기",
     quizYourAnswer: "내 답",
+    menu: "메뉴",
   },
   ja: {
     categories: "カテゴリー",
@@ -182,6 +184,7 @@ const strings = {
     quizPromoStart: "クイズ開始",
     quizMoreQuiz: "もっとクイズに挑戦",
     quizYourAnswer: "あなたの回答",
+    menu: "メニュー",
   },
   fr: {
     categories: "Catégories",
@@ -235,6 +238,7 @@ const strings = {
     quizPromoStart: "Lancer le quiz",
     quizMoreQuiz: "Plus de quiz",
     quizYourAnswer: "Votre réponse",
+    menu: "Menu",
   },
 } as const;
 
