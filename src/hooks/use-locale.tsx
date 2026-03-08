@@ -3,9 +3,10 @@ import { createContext, useContext, useState, ReactNode } from "react";
 export const LOCALES = [
   { code: "ko" as const, label: "한국어", flag: "🇰🇷" },
   { code: "ja" as const, label: "日本語", flag: "🇯🇵" },
+  { code: "fr" as const, label: "Français", flag: "🇫🇷" },
 ];
 
-export type LocaleCode = "ko" | "ja";
+export type LocaleCode = "ko" | "ja" | "fr";
 
 interface LocaleContextValue {
   locale: LocaleCode;
