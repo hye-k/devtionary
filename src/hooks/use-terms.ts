@@ -22,7 +22,7 @@ export interface Term {
   ipa: string;
   pronunciation_local: string;
   abbreviation_of?: string | null;
-  meaning_en: string;
+  meaning_word: string;
   meaning_dev: string;
   categories: string[];
   examples: TermExample[];
