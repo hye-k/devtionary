@@ -130,6 +130,7 @@ const strings = {
     quizPromoStart: "퀴즈 시작",
     quizMoreQuiz: "더 많은 퀴즈 풀기",
     quizYourAnswer: "내 답",
+    menu: "메뉴",
   },
   ja: {
     categories: "カテゴリー",
