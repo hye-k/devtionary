@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useCategories, useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { ArrowRight } from "lucide-react";
 
 const Categories = () => {
