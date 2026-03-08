@@ -180,6 +180,8 @@ const strings = {
     quizPromoTitle: "知識をテストしよう",
     quizPromoDesc: "開発用語、どれだけ知っていますか？クイズで確かめよう！",
     quizPromoStart: "クイズ開始",
+    quizMoreQuiz: "もっとクイズに挑戦",
+    quizYourAnswer: "あなたの回答",
   },
   fr: {
     categories: "Catégories",
