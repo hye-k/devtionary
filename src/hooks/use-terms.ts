@@ -39,7 +39,7 @@ export function useTerms() {
       if (error) throw error;
       return (data ?? []).map((t) => ({
         ...t,
-        examples: (t.examples as TermExample[]) ?? [],
+        examples: (t.examples as unknown as TermExample[]) ?? [],
       }));
     },
   });
