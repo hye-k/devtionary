@@ -56,8 +56,24 @@ const Index = () => {
     if (terms.length > 0) {
       const dayIndex = new Date().getDate() % terms.length;
       setTodayTerm(terms[dayIndex]);
+      // Pick a different term for quiz sample
+      const quizIndex = (dayIndex + 3) % terms.length;
+      setSampleQuizTerm(terms[quizIndex]);
+      setSelectedAnswer(null);
     }
   }, [terms]);
+
+  const sampleChoices = useMemo(() => {
+    if (!sampleQuizTerm || terms.length < 4) return [];
+    const correct = sampleQuizTerm.meaning_dev;
+    const others = terms
+      .filter((t) => t.id !== sampleQuizTerm.id)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map((t) => t.meaning_dev);
+    return [correct, ...others].sort(() => Math.random() - 0.5);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sampleQuizTerm?.id]);
 
   if (termsLoading) {
     return (
