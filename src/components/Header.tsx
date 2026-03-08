@@ -29,6 +29,9 @@ export function Header() {
           <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {s.categories}
           </Link>
+          <Link to="/quiz" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            {s.quiz}
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
               <span>{current.flag}</span>
