@@ -80,7 +80,7 @@ const Index = () => {
       [all[i], all[j]] = [all[j], all[i]];
     }
     return all;
-  }, [sampleQuizTerm?.id, terms]);
+  }, [sampleQuizTerm?.id, sampleQuizTerm?.meaning_dev, terms]);
 
   if (termsLoading) {
     return (
