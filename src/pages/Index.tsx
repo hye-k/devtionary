@@ -197,18 +197,13 @@ const Index = () => {
         {/* 퀴즈 샘플 */}
         {sampleQuizTerm && sampleChoices.length === 4 && (
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-mono text-primary">$</span>
-                <h2 className="text-lg font-semibold text-foreground">{s.quiz}</h2>
-              </div>
-              <Link to="/quiz" className="text-sm text-primary hover:underline flex items-center gap-1">
-                {s.quizPromoStart} <ArrowRight className="h-3 w-3" />
-              </Link>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-sm font-mono text-primary">$</span>
+              <h2 className="text-lg font-semibold text-foreground">{s.quiz}</h2>
             </div>
-            <div className="rounded-lg border border-primary/30 bg-card p-6">
+            <div className="relative rounded-lg border border-primary/30 bg-card p-6 overflow-hidden">
               <p className="text-sm text-muted-foreground mb-3">{s.quizPrompt}</p>
-              <p className="font-mono text-xl font-bold text-foreground mb-4">{sampleQuizTerm.word}</p>
+              <p className="font-mono text-xl font-bold text-primary mb-4">{sampleQuizTerm.word}</p>
               <div className="grid gap-2 sm:grid-cols-2">
                 {sampleChoices.map((choice, i) => {
                   const isCorrect = choice === sampleQuizTerm.meaning_dev;
@@ -235,13 +230,17 @@ const Index = () => {
                   );
                 })}
               </div>
+              {/* 결과 오버레이 */}
               {selectedAnswer && (
-                <div className="mt-4 flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">
-                    {selectedAnswer === sampleQuizTerm.meaning_dev ? s.quizPerfect : `${s.quizCorrectAnswer}: ${sampleQuizTerm.meaning_dev}`}
+                <div className="absolute inset-0 bg-card/95 backdrop-blur-sm flex flex-col items-center justify-center gap-4 p-6 animate-in fade-in duration-300">
+                  <p className="text-lg font-semibold text-foreground text-center">
+                    {selectedAnswer === sampleQuizTerm.meaning_dev ? "🎉 " + s.quizPerfect : "❌ " + s.quizCorrectAnswer + ": " + sampleQuizTerm.meaning_dev}
                   </p>
-                  <Link to="/quiz" className="text-sm text-primary hover:underline flex items-center gap-1">
-                    {s.quizPromoStart} <ArrowRight className="h-3 w-3" />
+                  <Link
+                    to="/quiz"
+                    className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    {s.quizPromoStart} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               )}
