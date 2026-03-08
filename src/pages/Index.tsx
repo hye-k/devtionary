@@ -90,7 +90,7 @@ const Index = () => {
                     <p className="mt-2 font-mono text-sm text-accent">← {todayTerm.abbreviation_of}</p>
                   )}
                 </div>
-                <Link to={`/term/${todayTerm.id}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
+                <Link to={`/term/${encodeURIComponent(todayTerm.word)}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
                   {s.detail} <ArrowRight className="h-3 w-3" />
                 </Link>
               </div>
