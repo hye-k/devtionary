@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
-import { Terminal } from "lucide-react";
+import { Terminal, ChevronDown } from "lucide-react";
 import { useLocale, LOCALES } from "@/hooks/use-locale";
+import { t } from "@/i18n/strings";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Header() {
   const { locale, setLocale } = useLocale();
+  const s = t(locale);
+  const current = LOCALES.find((l) => l.code === locale)!;
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
@@ -18,23 +27,27 @@ export function Header() {
         <SearchBar className="flex-1 max-w-lg hidden sm:block" />
         <nav className="ml-auto flex items-center gap-4">
           <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            카테고리
+            {s.categories}
           </Link>
-          <div className="flex items-center gap-1 border border-border rounded-md overflow-hidden">
-            {LOCALES.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => setLocale(l.code)}
-                className={`px-2 py-1 text-sm transition-colors ${
-                  locale === l.code
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {l.flag}
-              </button>
-            ))}
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
+              <span>{current.flag}</span>
+              <span className="hidden sm:inline">{current.label}</span>
+              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {LOCALES.map((l) => (
+                <DropdownMenuItem
+                  key={l.code}
+                  onClick={() => setLocale(l.code)}
+                  className={locale === l.code ? "bg-secondary" : ""}
+                >
+                  <span className="mr-2">{l.flag}</span>
+                  {l.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useCategories, useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
+import { t } from "@/i18n/strings";
 import { TermCard } from "@/components/TermCard";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -8,17 +9,18 @@ import { Badge } from "@/components/ui/badge";
 const CategoryDetail = () => {
   const { slug } = useParams();
   const { locale } = useLocale();
+  const s = t(locale);
   const { data: categories = [] } = useCategories();
   const { data: terms = [] } = useTerms(locale);
-  
+
   const category = categories.find((c) => c.slug === slug);
   const catTerms = terms.filter((t) => t.categories.includes(slug ?? ""));
 
   if (!category) {
     return (
       <div className="container py-20 text-center">
-        <p className="text-muted-foreground">카테고리를 찾을 수 없습니다.</p>
-        <Link to="/categories" className="text-primary hover:underline mt-4 inline-block">카테고리 목록으로</Link>
+        <p className="text-muted-foreground">{s.categoryNotFound}</p>
+        <Link to="/categories" className="text-primary hover:underline mt-4 inline-block">{s.toCategoryList}</Link>
       </div>
     );
   }
@@ -26,7 +28,7 @@ const CategoryDetail = () => {
   return (
     <div className="container py-8">
       <Link to="/categories" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
-        <ArrowLeft className="h-4 w-4" /> 카테고리 목록
+        <ArrowLeft className="h-4 w-4" /> {s.categoryList}
       </Link>
 
       <div className="mb-6">

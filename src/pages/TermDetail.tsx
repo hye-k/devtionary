@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
+import { t } from "@/i18n/strings";
 import { Volume2, ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -14,6 +15,7 @@ function speakWord(word: string) {
 const TermDetail = () => {
   const { id } = useParams();
   const { locale } = useLocale();
+  const s = t(locale);
   const { data: term, isLoading } = useTerm(id, locale);
   const { data: allTerms = [] } = useTerms(locale);
   const { data: categories = [] } = useCategories();
@@ -21,7 +23,7 @@ const TermDetail = () => {
   if (isLoading) {
     return (
       <div className="container py-20 text-center">
-        <p className="font-mono text-muted-foreground animate-pulse">loading...</p>
+        <p className="font-mono text-muted-foreground animate-pulse">{s.loading}</p>
       </div>
     );
   }
@@ -29,8 +31,8 @@ const TermDetail = () => {
   if (!term) {
     return (
       <div className="container py-20 text-center">
-        <p className="text-muted-foreground">용어를 찾을 수 없습니다.</p>
-        <Link to="/" className="text-primary hover:underline mt-4 inline-block">홈으로 돌아가기</Link>
+        <p className="text-muted-foreground">{s.termNotFound}</p>
+        <Link to="/" className="text-primary hover:underline mt-4 inline-block">{s.goHome}</Link>
       </div>
     );
   }
@@ -43,7 +45,7 @@ const TermDetail = () => {
   return (
     <div className="container max-w-3xl py-8">
       <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
-        <ArrowLeft className="h-4 w-4" /> 돌아가기
+        <ArrowLeft className="h-4 w-4" /> {s.goBack}
       </Link>
 
       {/* Header */}
@@ -53,7 +55,7 @@ const TermDetail = () => {
           <button
             onClick={() => speakWord(term.word)}
             className="rounded-lg p-2 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-            aria-label="발음 듣기"
+            aria-label={s.listenPronunciation}
           >
             <Volume2 className="h-5 w-5" />
           </button>
@@ -80,7 +82,7 @@ const TermDetail = () => {
       {/* 약어 풀이 */}
       {term.abbreviation_of && (
         <div className="rounded-lg border border-accent/30 bg-accent/5 p-4 mb-6">
-          <p className="text-sm text-muted-foreground mb-1">약어 풀이</p>
+          <p className="text-sm text-muted-foreground mb-1">{s.abbreviationOf}</p>
           <p className="font-mono text-accent font-medium">{term.word} ← {term.abbreviation_of}</p>
         </div>
       )}
@@ -89,13 +91,13 @@ const TermDetail = () => {
       <div className="space-y-6 mb-8">
         <div>
           <h2 className="flex items-center gap-2 text-sm font-mono text-primary mb-2">
-            <span className="text-primary/60">//</span> 영어 뜻
+            <span className="text-primary/60">//</span> {s.meaningEn}
           </h2>
           <p className="text-foreground">{term.meaning_en}</p>
         </div>
         <div>
           <h2 className="flex items-center gap-2 text-sm font-mono text-primary mb-2">
-            <span className="text-primary/60">//</span> 개발에서의 뜻
+            <span className="text-primary/60">//</span> {s.meaningDev}
           </h2>
           <p className="text-foreground leading-relaxed">{term.meaning_dev}</p>
         </div>
@@ -104,7 +106,7 @@ const TermDetail = () => {
       {/* 예문 */}
       <div className="mb-8">
         <h2 className="flex items-center gap-2 text-sm font-mono text-primary mb-3">
-          <span className="text-primary/60">//</span> 예문
+          <span className="text-primary/60">//</span> {s.examples}
         </h2>
         <div className="space-y-3">
           {term.examples.map((ex, i) => (
@@ -125,7 +127,7 @@ const TermDetail = () => {
       {relatedTerms.length > 0 && (
         <div>
           <h2 className="flex items-center gap-2 text-sm font-mono text-primary mb-3">
-            <span className="text-primary/60">//</span> 관련 용어
+            <span className="text-primary/60">//</span> {s.relatedTerms}
           </h2>
           <div className="flex flex-wrap gap-2">
             {relatedTerms.map((rt) => (

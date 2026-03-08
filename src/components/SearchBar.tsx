@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
+import { t } from "@/i18n/strings";
 
 export function SearchBar({ className = "" }: { className?: string }) {
   const [query, setQuery] = useState("");
@@ -11,6 +12,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const navigate = useNavigate();
   const { locale } = useLocale();
   const { data: terms = [] } = useTerms(locale);
+  const s = t(locale);
 
   const filtered = query.length > 0
     ? terms.filter(
@@ -41,7 +43,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          placeholder="용어 검색... (영어 또는 한글)"
+          placeholder={s.searchPlaceholder}
           className="w-full rounded-lg border border-border bg-card py-3 pl-12 pr-4 text-foreground font-mono text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
         />
         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground font-mono hidden sm:block">
