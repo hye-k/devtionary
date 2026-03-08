@@ -203,13 +203,15 @@ export default function Quiz() {
           {/* Question Card */}
           <Card className="border-primary/20">
             <CardHeader className="pb-3">
-              <CardTitle className="font-mono text-lg text-primary">{q.term.word}</CardTitle>
-              <p className="text-sm font-semibold text-primary">{s.quizPrompt}</p>
+              <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
+              <p className="text-sm font-semibold text-primary"></p>
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Example with blank */}
               <div className="rounded-md bg-code-bg p-4 font-mono text-sm">
-                <code className="text-foreground">{q.exampleCode}</code>
+                <code className="text-foreground">
+                  {q.exampleCode.split(" ").map((word) => word == q.term.word ? <span className="text-sm font-semibold text-primary">{word}</span>)}
+                </code>
               </div>
 
               {/* Options */}
