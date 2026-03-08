@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GARouteTracker } from "@/components/GARouteTracker";
+import { ScrollReset } from "@/components/ScrollReset";
 import { MetaTags } from "@/components/MetaTags";
 import { LocaleProvider } from "@/hooks/use-locale";
 import Index from "./pages/Index";
