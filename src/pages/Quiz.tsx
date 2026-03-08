@@ -197,14 +197,6 @@ export default function Quiz() {
       <div className="min-h-screen">
         <div className="container py-10 max-w-2xl space-y-6">
           {/* Category & Progress */}
-          {selectedCategory && (
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="font-mono text-xs">
-                {categories.find((c) => c.slug === selectedCategory)?.icon}{" "}
-                {categories.find((c) => c.slug === selectedCategory)?.name}
-              </Badge>
-            </div>
-          )}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
               <span>
@@ -220,7 +212,15 @@ export default function Quiz() {
           {/* Question Card */}
           <Card className="border-primary/20">
             <CardHeader className="pb-3">
-              <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
+              <div className="flex items-center justify-between gap-2">
+                <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
+                {selectedCategory && (
+                  <Badge variant="secondary" className="font-mono text-xs shrink-0">
+                    {categories.find((c) => c.slug === selectedCategory)?.icon}{" "}
+                    {categories.find((c) => c.slug === selectedCategory)?.name}
+                  </Badge>
+                )}
+              </div>
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Term word */}
