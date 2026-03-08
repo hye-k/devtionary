@@ -41,7 +41,7 @@ export function Header() {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/quiz" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/quiz" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                 {s.quiz}
               </Link>
             </TooltipTrigger>
