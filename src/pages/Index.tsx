@@ -58,7 +58,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
         <div className="container relative py-16 md:py-24">
           <div className="flex items-center gap-2 mb-4">
