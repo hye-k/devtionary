@@ -127,6 +127,8 @@ const strings = {
     quizPromoTitle: "실력을 테스트해 보세요",
     quizPromoDesc: "개발 용어, 얼마나 알고 계신가요? 퀴즈로 확인해 보세요!",
     quizPromoStart: "퀴즈 시작",
+    quizMoreQuiz: "더 많은 퀴즈 풀기",
+    quizYourAnswer: "내 답",
   },
   ja: {
     categories: "カテゴリー",
