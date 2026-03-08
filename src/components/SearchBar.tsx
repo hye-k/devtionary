@@ -38,12 +38,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const filtered = useMemo(
     () =>
       q.length > 0
-        ? terms.filter(
-            (term) =>
-              term.word.toLowerCase().startsWith(q) ||
-              term.pronunciation_local.toLowerCase().startsWith(q) ||
-              (q.length >= 2 && term.meaning_word.toLowerCase().startsWith(q)),
-          )
+        ? terms.filter((term) => term.word.toLowerCase().startsWith(q))
         : [],
     [q, terms],
   );
