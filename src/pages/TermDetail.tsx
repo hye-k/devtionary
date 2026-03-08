@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { Volume2, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -19,6 +20,12 @@ const TermDetail = () => {
   const { data: term, isLoading } = useTerm(slug, locale);
   const { data: allTerms = [] } = useTerms(locale);
   const { data: categories = [] } = useCategories(locale);
+
+  usePageMeta({
+    title: term ? `${term.word} - Devtionary` : "Devtionary",
+    description: term ? `${term.meaning_word}. ${term.meaning_dev}` : "",
+    path: slug ? `/term/${slug}` : "/",
+  });
 
   if (isLoading) {
     return (
