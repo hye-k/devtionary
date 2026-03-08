@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { GARouteTracker } from "@/components/GARouteTracker";
 import { MetaTags } from "@/components/MetaTags";
 import { LocaleProvider } from "@/hooks/use-locale";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <ScrollToTop />
         </BrowserRouter>
       </LocaleProvider>
     </TooltipProvider>
