@@ -9,6 +9,8 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { GARouteTracker } from "@/components/GARouteTracker";
 import { ScrollReset } from "@/components/ScrollReset";
 import { MetaTags } from "@/components/MetaTags";
+import { JsonLd } from "@/components/JsonLd";
+import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { LocaleProvider } from "@/hooks/use-locale";
 import Index from "./pages/Index";
 import TermDetail from "./pages/TermDetail";
@@ -30,6 +32,8 @@ const App = () => (
           <GARouteTracker />
           <ScrollReset />
           <MetaTags />
+          <JsonLd />
+          <HtmlLangSync />
           <Header />
           <Routes>
             <Route path="/" element={<Index />} />
