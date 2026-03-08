@@ -49,7 +49,7 @@ export type Database = {
           id: string
           locale: string
           meaning_dev: string
-          meaning_en: string
+          meaning_word: string
           pronunciation_local: string
           term_id: string
           updated_at: string
@@ -61,7 +61,7 @@ export type Database = {
           id?: string
           locale?: string
           meaning_dev: string
-          meaning_en: string
+          meaning_word: string
           pronunciation_local: string
           term_id: string
           updated_at?: string
@@ -73,7 +73,7 @@ export type Database = {
           id?: string
           locale?: string
           meaning_dev?: string
-          meaning_en?: string
+          meaning_word?: string
           pronunciation_local?: string
           term_id?: string
           updated_at?: string
