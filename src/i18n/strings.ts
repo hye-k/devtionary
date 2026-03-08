@@ -84,6 +84,7 @@ const strings = {
     categoryNotFound: "카테고리를 찾을 수 없습니다.",
     toCategoryList: "카테고리 목록으로",
     todayWord: "오늘의 단어",
+    todayQuiz: "오늘의 퀴즈",
     viewAll: "전체 보기",
     allTerms: "전체 용어",
     detail: "자세히",
