@@ -24,7 +24,7 @@ export function Header() {
             Dev<span className="text-primary">·</span>tionary
           </span>
         </Link>
-        <SearchBar className="flex-1 max-w-lg hidden sm:block" />
+        <SearchBar className="flex-1 max-w-xs hidden sm:block" />
         <nav className="ml-auto flex items-center gap-4">
           <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {s.categories}
