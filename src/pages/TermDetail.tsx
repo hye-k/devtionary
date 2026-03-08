@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
+import { useLocale } from "@/hooks/use-locale";
 import { Volume2, ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
