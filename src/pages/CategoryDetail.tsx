@@ -1,13 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useCategories, useTerms } from "@/hooks/use-terms";
+import { useLocale } from "@/hooks/use-locale";
 import { TermCard } from "@/components/TermCard";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const CategoryDetail = () => {
   const { slug } = useParams();
+  const { locale } = useLocale();
   const { data: categories = [] } = useCategories();
-  const { data: terms = [] } = useTerms();
+  const { data: terms = [] } = useTerms(locale);
   
   const category = categories.find((c) => c.slug === slug);
   const catTerms = terms.filter((t) => t.categories.includes(slug ?? ""));

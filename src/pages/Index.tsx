@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { TermCard } from "@/components/TermCard";
 import { useTerms, useCategories, Term } from "@/hooks/use-terms";
+import { useLocale } from "@/hooks/use-locale";
 import { Volume2, Terminal, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -14,7 +15,8 @@ function speakWord(word: string) {
 }
 
 const Index = () => {
-  const { data: terms = [], isLoading: termsLoading } = useTerms();
+  const { locale } = useLocale();
+  const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories();
   const [todayTerm, setTodayTerm] = useState<Term | null>(null);
 

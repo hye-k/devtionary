@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
+import { useLocale } from "@/hooks/use-locale";
 import { Volume2, ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -12,8 +13,9 @@ function speakWord(word: string) {
 
 const TermDetail = () => {
   const { id } = useParams();
-  const { data: term, isLoading } = useTerm(id);
-  const { data: allTerms = [] } = useTerms();
+  const { locale } = useLocale();
+  const { data: term, isLoading } = useTerm(id, locale);
+  const { data: allTerms = [] } = useTerms(locale);
   const { data: categories = [] } = useCategories();
 
   if (isLoading) {
