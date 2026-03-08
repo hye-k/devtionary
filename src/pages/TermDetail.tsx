@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
@@ -11,6 +12,16 @@ function speakWord(word: string) {
   utterance.lang = "en-US";
   utterance.rate = 0.85;
   speechSynthesis.speak(utterance);
+}
+
+function highlightWord(text: string, word: string): ReactNode {
+  if (!word) return text;
+  const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  const parts = text.split(regex);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    regex.test(part) ? <span key={i} className="text-primary font-semibold">{part}</span> : part
+  );
 }
 
 const TermDetail = () => {
@@ -118,8 +129,8 @@ const TermDetail = () => {
         <div className="space-y-3">
           {term.examples.map((ex, i) => (
             <div key={i} className="rounded-lg bg-code-bg border border-border p-4">
-              <pre className="font-mono text-sm text-foreground whitespace-pre-wrap overflow-x-auto">{ex.code}</pre>
-              <p className="mt-2 text-sm text-muted-foreground">→ {ex.translation}</p>
+              <pre className="font-mono text-sm text-foreground whitespace-pre-wrap overflow-x-auto">{highlightWord(ex.code, term.word)}</pre>
+              <p className="mt-2 text-sm text-muted-foreground">→ {highlightWord(ex.translation, term.word)}</p>
             </div>
           ))}
         </div>
