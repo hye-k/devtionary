@@ -46,6 +46,7 @@ function mergeTermWithTranslation(
   return {
     id: term.id,
     word: term.word,
+    slug: term.slug,
     ipa: term.ipa,
     categories: term.categories,
     examples: (translation?.examples as unknown as TermExample[]) ?? [],
