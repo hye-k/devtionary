@@ -39,6 +39,11 @@ export interface Category {
 
 const DEFAULT_LOCALE = "ko";
 
+/** English has no translations row — fall back to Korean for DB queries */
+function dbLocale(locale: string): string {
+  return locale === "en" ? "ko" : locale;
+}
+
 function mergeTermWithTranslation(
   term: any,
   translation: TermTranslation | undefined
@@ -65,7 +70,7 @@ export function useTerms(locale: string = DEFAULT_LOCALE) {
       const { data, error } = await supabase
         .from("terms")
         .select("*, term_translations!inner(*)")
-        .eq("term_translations.locale", locale)
+        .eq("term_translations.locale", dbLocale(locale))
         .order("word");
       if (error) throw error;
       return (data ?? []).map((t: any) => {
@@ -87,7 +92,7 @@ export function useTerm(slug: string | undefined, locale: string = DEFAULT_LOCAL
         .from("terms")
         .select("*, term_translations!inner(*)")
         .eq("slug", slug)
-        .eq("term_translations.locale", locale)
+        .eq("term_translations.locale", dbLocale(locale))
         .maybeSingle();
       if (error) throw error;
       if (!data) return null;

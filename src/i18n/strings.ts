@@ -1,6 +1,58 @@
 import type { LocaleCode } from "@/hooks/use-locale";
 
+const META = {
+  en: {
+    title: "Devtionary - Dictionary for Developers",
+    description: "A multilingual dictionary for developers. Look up programming terms with pronunciation, etymology, and plain-language explanations in your language.",
+  },
+  ko: {
+    title: "Devtionary - 개발자를 위한 사전",
+    description: "개발 용어를 한국어로 쉽게 풀어서 설명합니다. 매일 쓰는 프로그래밍 용어의 발음, 어원, 뜻을 한국어로 쉽게 찾아보세요.",
+  },
+  ja: {
+    title: "Devtionary - 開発者のための辞書",
+    description: "開発用語の多言語辞典。毎日使うプログラミング用語の発音・語源・意味を日本語でわかりやすく調べられます。",
+  },
+  fr: {
+    title: "Devtionary - Le dictionnaire des développeurs",
+    description: "Un dictionnaire multilingue pour les développeurs. Retrouvez la prononciation, l'étymologie et les explications en français des termes de programmation du quotidien.",
+  },
+} as const;
+
+export function meta(locale: LocaleCode) {
+  return META[locale] ?? META.en;
+}
+
 const strings = {
+  en: {
+    categories: "Categories",
+    allCategories: "Categories",
+    categoryList: "Category List",
+    categoryNotFound: "Category not found.",
+    toCategoryList: "Back to categories",
+    todayWord: "Word of the Day",
+    viewAll: "View all",
+    allTerms: "All Terms",
+    detail: "Details",
+    goBack: "Go back",
+    goHome: "Go home",
+    termNotFound: "Term not found.",
+    listenPronunciation: "Listen to pronunciation",
+    abbreviationOf: "Abbreviation of",
+    meaningWord: "English meaning",
+    meaningDev: "Meaning in development",
+    examples: "Examples",
+    relatedTerms: "Related terms",
+    searchPlaceholder: "Search terms... (English)",
+    termCount: (n: number) => `${n} term${n !== 1 ? "s" : ""}`,
+    heroSubtitle: "Developer Dictionary — Understand the terms you use every day",
+    heroCode: (kw: string, val: string, comment: string) =>
+      `${kw} understanding = ${val}; ${comment}`,
+    heroCodeKw: "const",
+    heroCodeVal: "true",
+    heroCodeComment: "// Understanding what you use makes all the difference",
+    loading: "loading...",
+  },
   ko: {
     categories: "카테고리",
     allCategories: "카테고리",
@@ -95,5 +147,5 @@ export type UIStrings = {
 };
 
 export function t(locale: LocaleCode) {
-  return (strings[locale] ?? strings.ko) as UIStrings;
+  return (strings[locale] ?? strings.en) as UIStrings;
 }

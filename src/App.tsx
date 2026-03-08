@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { MetaTags } from "@/components/MetaTags";
 import { LocaleProvider } from "@/hooks/use-locale";
 import Index from "./pages/Index";
 import TermDetail from "./pages/TermDetail";
@@ -20,6 +21,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <MetaTags />
           <Header />
           <Routes>
             <Route path="/" element={<Index />} />
