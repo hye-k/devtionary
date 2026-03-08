@@ -199,9 +199,8 @@ export default function Quiz() {
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Example with blank */}
-              <div className="rounded-md bg-code-bg p-4 font-mono text-sm space-y-1">
+              <div className="rounded-md bg-code-bg p-4 font-mono text-sm">
                 <code className="text-foreground">{q.exampleCode}</code>
-                <p className="text-muted-foreground text-xs">→ {q.exampleTranslation}</p>
               </div>
 
               <p className="text-sm text-muted-foreground">{s.quizPrompt}</p>
