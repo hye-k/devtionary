@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
