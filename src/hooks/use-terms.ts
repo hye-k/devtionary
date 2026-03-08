@@ -70,7 +70,7 @@ export function useTerms(locale: string = DEFAULT_LOCALE) {
       const { data, error } = await supabase
         .from("terms")
         .select("*, term_translations!inner(*)")
-        .eq("term_translations.locale", locale)
+        .eq("term_translations.locale", dbLocale(locale))
         .order("word");
       if (error) throw error;
       return (data ?? []).map((t: any) => {
