@@ -45,6 +45,7 @@ export type Database = {
         Row: {
           abbreviation_of: string | null
           created_at: string
+          examples: Json
           id: string
           locale: string
           meaning_dev: string
@@ -56,6 +57,7 @@ export type Database = {
         Insert: {
           abbreviation_of?: string | null
           created_at?: string
+          examples?: Json
           id?: string
           locale?: string
           meaning_dev: string
@@ -67,6 +69,7 @@ export type Database = {
         Update: {
           abbreviation_of?: string | null
           created_at?: string
+          examples?: Json
           id?: string
           locale?: string
           meaning_dev?: string
@@ -89,7 +92,6 @@ export type Database = {
         Row: {
           categories: string[]
           created_at: string
-          examples: Json
           id: string
           ipa: string
           related_terms: string[] | null
@@ -99,7 +101,6 @@ export type Database = {
         Insert: {
           categories?: string[]
           created_at?: string
-          examples?: Json
           id?: string
           ipa: string
           related_terms?: string[] | null
@@ -109,7 +110,6 @@ export type Database = {
         Update: {
           categories?: string[]
           created_at?: string
-          examples?: Json
           id?: string
           ipa?: string
           related_terms?: string[] | null
