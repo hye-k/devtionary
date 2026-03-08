@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
-import { Volume2, ArrowLeft, ExternalLink } from "lucide-react";
+import { Volume2, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function speakWord(word: string) {
@@ -113,11 +113,6 @@ const TermDetail = () => {
             <div key={i} className="rounded-lg bg-code-bg border border-border p-4">
               <pre className="font-mono text-sm text-foreground whitespace-pre-wrap overflow-x-auto">{ex.code}</pre>
               <p className="mt-2 text-sm text-muted-foreground">→ {ex.translation}</p>
-              {ex.source && (
-                <a href={ex.source} target="_blank" rel="noopener noreferrer" className="mt-1 text-xs text-muted-foreground/60 hover:text-primary flex items-center gap-1 transition-colors">
-                  <ExternalLink className="h-3 w-3" /> {ex.source}
-                </a>
-              )}
             </div>
           ))}
         </div>
