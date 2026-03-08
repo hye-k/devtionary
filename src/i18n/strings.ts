@@ -220,6 +220,9 @@ const strings = {
     tooltipQuiz: "Testez vos connaissances",
     tooltipGithub: "Signaler un bug ou suggérer une fonctionnalité",
     tooltipLanguage: "Changer de langue",
+    quizPromoTitle: "Testez vos connaissances",
+    quizPromoDesc: "Vous pensez maîtriser les termes dev ? Faites le quiz pour le vérifier !",
+    quizPromoStart: "Lancer le quiz",
   },
 } as const;
 

@@ -176,6 +176,32 @@ const Index = () => {
           </div>
         </section>
 
+        {/* 퀴즈 프로모션 */}
+        <section>
+          <Link
+            to="/quiz"
+            className="group relative block rounded-lg border border-primary/20 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 p-6 sm:p-8 hover:border-primary/40 hover:shadow-lg transition-all overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+              <div className="flex items-center justify-center rounded-lg bg-primary/10 p-3 shrink-0">
+                <Brain className="h-6 w-6 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h2 className="font-mono text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {s.quizPromoTitle}
+                </h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {s.quizPromoDesc}
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shrink-0 group-hover:gap-2.5 transition-all">
+                {s.quizPromoStart} <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </div>
+          </Link>
+        </section>
+
         {/* 전체 용어 */}
         <section>
           <div className="flex items-center gap-2 mb-4">
