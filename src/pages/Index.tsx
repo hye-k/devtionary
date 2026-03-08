@@ -71,7 +71,7 @@ const Index = () => {
             <div className="rounded-lg border border-primary/30 bg-card p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <Link to={`/term/${encodeURIComponent(todayTerm.word)}`} className="font-mono text-2xl font-bold text-primary hover:underline">
+                  <Link to={`/term/${todayTerm.slug}`} className="font-mono text-2xl font-bold text-primary hover:underline">
                     {todayTerm.word}
                   </Link>
                   <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
@@ -90,7 +90,7 @@ const Index = () => {
                     <p className="mt-2 font-mono text-sm text-accent">← {todayTerm.abbreviation_of}</p>
                   )}
                 </div>
-                <Link to={`/term/${encodeURIComponent(todayTerm.word)}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
+                <Link to={`/term/${todayTerm.slug}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
                   {s.detail} <ArrowRight className="h-3 w-3" />
                 </Link>
               </div>

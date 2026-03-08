@@ -16,7 +16,7 @@ export function TermCard({ term }: { term: Term }) {
 
   return (
     <Link
-      to={`/term/${encodeURIComponent(term.word)}`}
+      to={`/term/${term.slug}`}
       className="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 animate-fade-in"
     >
       <div className="flex items-start justify-between gap-2">
