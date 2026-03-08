@@ -184,6 +184,7 @@ const strings = {
     quizPromoStart: "クイズ開始",
     quizMoreQuiz: "もっとクイズに挑戦",
     quizYourAnswer: "あなたの回答",
+    menu: "メニュー",
   },
   fr: {
     categories: "Catégories",
