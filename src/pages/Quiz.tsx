@@ -212,7 +212,7 @@ export default function Quiz() {
           {/* Question Card */}
           <Card className="border-primary/20">
             <CardHeader className="pb-3">
-              <div className="flex items-center justify-between">
+              <div className="flex w-100 items-center justify-between">
                 <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
                 {selectedCategory && (
                   <Badge variant="secondary" className="font-mono text-xs shrink-0">
