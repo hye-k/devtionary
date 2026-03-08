@@ -212,13 +212,16 @@ export default function Quiz() {
                 <code className="text-foreground">
                   {q.exampleCode
                     .split(" ")
-                    .map((word) =>
-                      word == q.term.word ? (
-                        <span className="text-sm font-semibold text-primary">{word}</span>
-                      ) : (
-                        <span>{word}</span>
-                      ),
-                    )}
+                    .map((word, idx) => (
+                      <span key={idx}>
+                        {idx > 0 && " "}
+                        {word === q.term.word ? (
+                          <span className="text-sm font-semibold text-primary">{word}</span>
+                        ) : (
+                          word
+                        )}
+                      </span>
+                    ))}
                 </code>
               </div>
 
