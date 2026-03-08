@@ -58,7 +58,7 @@ const TermDetail = () => {
         <div className="flex items-center gap-3 text-muted-foreground">
           <span className="font-mono text-sm">{term.ipa}</span>
           <span>·</span>
-          <span className="text-sm">{term.pronunciation_kr}</span>
+          <span className="text-sm">{term.pronunciation_local}</span>
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
           {term.categories.map((catSlug) => {

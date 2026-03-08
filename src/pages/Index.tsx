@@ -73,7 +73,7 @@ const Index = () => {
                   <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
                     <span className="font-mono">{todayTerm.ipa}</span>
                     <span>·</span>
-                    <span>{todayTerm.pronunciation_kr}</span>
+                    <span>{todayTerm.pronunciation_local}</span>
                     <button
                       onClick={() => speakWord(todayTerm.word)}
                       className="rounded p-1 hover:bg-secondary transition-colors"

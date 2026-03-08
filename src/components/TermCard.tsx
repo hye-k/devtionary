@@ -27,7 +27,7 @@ export function TermCard({ term }: { term: Term }) {
           <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
             <span className="font-mono text-xs">{term.ipa}</span>
             <span className="text-terminal-dim">·</span>
-            <span>{term.pronunciation_kr}</span>
+            <span>{term.pronunciation_local}</span>
           </div>
         </div>
         <button
