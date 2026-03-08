@@ -210,17 +210,15 @@ export default function Quiz() {
               {/* Example with blank */}
               <div className="rounded-md bg-code-bg p-4 font-mono text-sm">
                 <code className="text-foreground">
-                  <p>
-                    {q.exampleCode
-                      .split(" ")
-                      .map((word) =>
-                        word == q.term.word ? (
-                          <span className="text-sm font-semibold text-primary">{word}</span>
-                        ) : (
-                          <span>{word}</span>
-                        ),
-                      )}
-                  </p>
+                  {q.exampleCode
+                    .split(" ")
+                    .map((word) =>
+                      word == q.term.word ? (
+                        <span className="text-sm font-semibold text-primary">{word}</span>
+                      ) : (
+                        <span>{word}</span>
+                      ),
+                    )}
                 </code>
               </div>
 
