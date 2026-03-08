@@ -41,45 +41,77 @@ export type Database = {
         }
         Relationships: []
       }
-      terms: {
+      term_translations: {
         Row: {
           abbreviation_of: string | null
+          created_at: string
+          id: string
+          locale: string
+          meaning_dev: string
+          meaning_en: string
+          pronunciation_local: string
+          term_id: string
+          updated_at: string
+        }
+        Insert: {
+          abbreviation_of?: string | null
+          created_at?: string
+          id?: string
+          locale?: string
+          meaning_dev: string
+          meaning_en: string
+          pronunciation_local: string
+          term_id: string
+          updated_at?: string
+        }
+        Update: {
+          abbreviation_of?: string | null
+          created_at?: string
+          id?: string
+          locale?: string
+          meaning_dev?: string
+          meaning_en?: string
+          pronunciation_local?: string
+          term_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "term_translations_term_id_fkey"
+            columns: ["term_id"]
+            isOneToOne: false
+            referencedRelation: "terms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      terms: {
+        Row: {
           categories: string[]
           created_at: string
           examples: Json
           id: string
           ipa: string
-          meaning_dev: string
-          meaning_en: string
-          pronunciation_kr: string
           related_terms: string[] | null
           updated_at: string
           word: string
         }
         Insert: {
-          abbreviation_of?: string | null
           categories?: string[]
           created_at?: string
           examples?: Json
           id?: string
           ipa: string
-          meaning_dev: string
-          meaning_en: string
-          pronunciation_kr: string
           related_terms?: string[] | null
           updated_at?: string
           word: string
         }
         Update: {
-          abbreviation_of?: string | null
           categories?: string[]
           created_at?: string
           examples?: Json
           id?: string
           ipa?: string
-          meaning_dev?: string
-          meaning_en?: string
-          pronunciation_kr?: string
           related_terms?: string[] | null
           updated_at?: string
           word?: string
