@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useCategories, useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { TermCard } from "@/components/TermCard";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +16,12 @@ const CategoryDetail = () => {
 
   const category = categories.find((c) => c.slug === slug);
   const catTerms = terms.filter((t) => t.categories.includes(slug ?? ""));
+
+  usePageMeta({
+    title: category ? `${category.name} - Devtionary` : "Devtionary",
+    description: category?.description ?? "",
+    path: slug ? `/category/${slug}` : "/categories",
+  });
 
   if (!category) {
     return (
