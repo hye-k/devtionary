@@ -9,22 +9,16 @@ const ITEM_HEIGHT = 48;
 const VISIBLE_ITEMS = 4.5;
 
 function renderHighlightedText(text: string, query: string) {
-  if (!query) return text;
+  if (!query || !text.toLowerCase().startsWith(query.toLowerCase())) return text;
 
-  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`(${escapedQuery})`, "ig");
+  const match = text.slice(0, query.length);
+  const rest = text.slice(query.length);
 
-  return text.split(regex).map((part, idx) =>
-    part.toLowerCase() === query.toLowerCase() ? (
-      <mark
-        key={`${part}-${idx}`}
-        className="rounded-sm bg-accent px-0.5 text-accent-foreground"
-      >
-        {part}
-      </mark>
-    ) : (
-      <Fragment key={`${part}-${idx}`}>{part}</Fragment>
-    ),
+  return (
+    <>
+      <mark className="rounded-sm bg-accent px-0.5 text-accent-foreground">{match}</mark>
+      {rest}
+    </>
   );
 }
 
