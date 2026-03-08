@@ -21,7 +21,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
           term.word.toLowerCase().includes(q) ||
           term.pronunciation_local.toLowerCase().includes(q) ||
           (q.length >= 2 && term.meaning_word.toLowerCase().includes(q))
-      ).slice(0, 8)
+      )
     : [];
 
   useEffect(() => {
