@@ -14,7 +14,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
     ? terms.filter(
         (t) =>
           t.word.toLowerCase().includes(query.toLowerCase()) ||
-          t.pronunciation_kr.includes(query) ||
+          t.pronunciation_local.includes(query) ||
           t.meaning_dev.includes(query)
       ).slice(0, 8)
     : [];
