@@ -52,7 +52,7 @@ function mergeTermWithTranslation(
     examples: (translation?.examples as unknown as TermExample[]) ?? [],
     related_terms: term.related_terms,
     pronunciation_local: translation?.pronunciation_local ?? "",
-    meaning_en: translation?.meaning_en ?? "",
+    meaning_word: translation?.meaning_word ?? "",
     meaning_dev: translation?.meaning_dev ?? "",
     abbreviation_of: translation?.abbreviation_of ?? null,
   };

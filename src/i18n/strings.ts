@@ -45,7 +45,7 @@ const strings = {
     termNotFound: "用語が見つかりません。",
     listenPronunciation: "発音を聞く",
     abbreviationOf: "略語の意味",
-    meaningEn: "英語の意味",
+    meaningWord: "英語の意味",
     meaningDev: "開発での意味",
     examples: "例文",
     relatedTerms: "関連用語",
