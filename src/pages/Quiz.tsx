@@ -198,12 +198,12 @@ export default function Quiz() {
               <Badge variant="secondary" className="w-fit font-mono text-xs">{q.term.ipa}</Badge>
             </CardHeader>
             <CardContent className="space-y-4">
+              <p className="text-sm font-semibold text-primary">{s.quizPrompt}</p>
+
               {/* Example with blank */}
               <div className="rounded-md bg-code-bg p-4 font-mono text-sm">
                 <code className="text-foreground">{q.exampleCode}</code>
               </div>
-
-              <p className="text-sm font-semibold text-primary">{s.quizPrompt}</p>
 
               {/* Options */}
               <div className="grid gap-2">
