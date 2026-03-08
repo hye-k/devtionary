@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { GARouteTracker } from "@/components/GARouteTracker";
 import { MetaTags } from "@/components/MetaTags";
 import { LocaleProvider } from "@/hooks/use-locale";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/quiz" element={<Quiz />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </LocaleProvider>
     </TooltipProvider>
