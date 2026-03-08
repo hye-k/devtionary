@@ -18,6 +18,7 @@ export interface TermTranslation {
 export interface Term {
   id: string;
   word: string;
+  slug: string;
   ipa: string;
   pronunciation_local: string;
   abbreviation_of?: string | null;
