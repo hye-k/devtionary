@@ -74,6 +74,8 @@ const strings = {
     quizPromoTitle: "Test Your Knowledge",
     quizPromoDesc: "Think you know your dev terms? Take a quick quiz and find out!",
     quizPromoStart: "Start Quiz",
+    quizMoreQuiz: "Try More Quizzes",
+    quizYourAnswer: "Your answer",
   },
   ko: {
     categories: "카테고리",
