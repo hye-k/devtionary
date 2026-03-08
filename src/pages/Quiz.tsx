@@ -81,7 +81,7 @@ export default function Quiz() {
     setCurrentQ(0);
   }, [locale]);
 
-
+  const categoryTerms = useMemo(() => {
     if (!selectedCategory) return terms;
     return terms.filter((t) => t.categories.includes(selectedCategory));
   }, [terms, selectedCategory]);
