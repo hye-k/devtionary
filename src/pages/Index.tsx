@@ -5,7 +5,7 @@ import { TermCard } from "@/components/TermCard";
 import { useTerms, useCategories, Term } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
-import { Volume2, Terminal, ArrowRight, Brain } from "lucide-react";
+import { Volume2, Terminal, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Pagination,
