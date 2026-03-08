@@ -15,6 +15,7 @@ import TermDetail from "./pages/TermDetail";
 import Categories from "./pages/Categories";
 import CategoryDetail from "./pages/CategoryDetail";
 import Quiz from "./pages/Quiz";
+import QuizSelect from "./pages/QuizSelect";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,7 +36,8 @@ const App = () => (
             <Route path="/term/:slug" element={<TermDetail />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/category/:slug" element={<CategoryDetail />} />
-            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/quiz" element={<QuizSelect />} />
+            <Route path="/quiz/:slug" element={<Quiz />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
