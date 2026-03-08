@@ -7,11 +7,19 @@ export interface TermExample {
   source?: string;
 }
 
+export interface TermTranslation {
+  locale: string;
+  pronunciation_local: string;
+  meaning_en: string;
+  meaning_dev: string;
+  abbreviation_of?: string | null;
+}
+
 export interface Term {
   id: string;
   word: string;
   ipa: string;
-  pronunciation_kr: string;
+  pronunciation_local: string;
   abbreviation_of?: string | null;
   meaning_en: string;
   meaning_dev: string;
@@ -28,36 +36,63 @@ export interface Category {
   slug: string;
 }
 
-export function useTerms() {
+const DEFAULT_LOCALE = "ko";
+
+function mergeTermWithTranslation(
+  term: any,
+  translation: TermTranslation | undefined
+): Term {
+  return {
+    id: term.id,
+    word: term.word,
+    ipa: term.ipa,
+    categories: term.categories,
+    examples: (term.examples as unknown as TermExample[]) ?? [],
+    related_terms: term.related_terms,
+    pronunciation_local: translation?.pronunciation_local ?? "",
+    meaning_en: translation?.meaning_en ?? "",
+    meaning_dev: translation?.meaning_dev ?? "",
+    abbreviation_of: translation?.abbreviation_of ?? null,
+  };
+}
+
+export function useTerms(locale: string = DEFAULT_LOCALE) {
   return useQuery({
-    queryKey: ["terms"],
+    queryKey: ["terms", locale],
     queryFn: async (): Promise<Term[]> => {
       const { data, error } = await supabase
         .from("terms")
-        .select("*")
+        .select("*, term_translations!inner(*)")
+        .eq("term_translations.locale", locale)
         .order("word");
       if (error) throw error;
-      return (data ?? []).map((t) => ({
-        ...t,
-        examples: (t.examples as unknown as TermExample[]) ?? [],
-      }));
+      return (data ?? []).map((t: any) => {
+        const tr = Array.isArray(t.term_translations)
+          ? t.term_translations[0]
+          : t.term_translations;
+        return mergeTermWithTranslation(t, tr);
+      });
     },
   });
 }
 
-export function useTerm(id: string | undefined) {
+export function useTerm(id: string | undefined, locale: string = DEFAULT_LOCALE) {
   return useQuery({
-    queryKey: ["term", id],
+    queryKey: ["term", id, locale],
     queryFn: async (): Promise<Term | null> => {
       if (!id) return null;
       const { data, error } = await supabase
         .from("terms")
-        .select("*")
+        .select("*, term_translations!inner(*)")
         .eq("id", id)
+        .eq("term_translations.locale", locale)
         .maybeSingle();
       if (error) throw error;
       if (!data) return null;
-      return { ...data, examples: (data.examples as unknown as TermExample[]) ?? [] };
+      const tr = Array.isArray((data as any).term_translations)
+        ? (data as any).term_translations[0]
+        : (data as any).term_translations;
+      return mergeTermWithTranslation(data, tr);
     },
     enabled: !!id,
   });
