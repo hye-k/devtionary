@@ -9,7 +9,7 @@ export interface TermExample {
 export interface TermTranslation {
   locale: string;
   pronunciation_local: string;
-  meaning_en: string;
+  meaning_word: string;
   meaning_dev: string;
   abbreviation_of?: string | null;
   examples?: TermExample[];
