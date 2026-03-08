@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
-import { Volume2, ArrowLeft, ExternalLink } from "lucide-react";
+import { Volume2, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function speakWord(word: string) {
