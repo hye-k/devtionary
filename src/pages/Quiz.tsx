@@ -341,6 +341,7 @@ export default function Quiz() {
                   <div className="rounded-md bg-code-bg p-2 font-mono text-xs">
                     <code>{q.exampleCode}</code>
                   </div>
+                  <p className="text-xs text-muted-foreground">{q.exampleTranslation}</p>
                   {!isCorrect && chosen !== null && (
                     <p className="text-sm text-destructive line-through">{q.options[chosen]}</p>
                   )}
