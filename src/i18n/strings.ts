@@ -190,6 +190,7 @@ const strings = {
     categoryNotFound: "Catégorie introuvable.",
     toCategoryList: "Retour aux catégories",
     todayWord: "Mot du jour",
+    todayQuiz: "Quiz du jour",
     viewAll: "Tout voir",
     allTerms: "Tous les termes",
     detail: "Détails",
