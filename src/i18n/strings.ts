@@ -160,6 +160,10 @@ const strings = {
     quizKeepGoing: "引き続き頑張りましょう！💪",
     quizRetry: "もう一度",
     quizCorrectAnswer: "正解",
+    tooltipCategories: "カテゴリー別に用語を探す",
+    tooltipQuiz: "用語クイズに挑戦",
+    tooltipGithub: "バグ報告・機能提案",
+    tooltipLanguage: "言語を変更",
   },
   fr: {
     categories: "Catégories",
