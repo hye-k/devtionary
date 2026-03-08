@@ -4,6 +4,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { TermCard } from "@/components/TermCard";
 import { useTerms, useCategories, Term } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
+import { t } from "@/i18n/strings";
 import { Volume2, Terminal, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -16,6 +17,7 @@ function speakWord(word: string) {
 
 const Index = () => {
   const { locale } = useLocale();
+  const s = t(locale);
   const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories();
   const [todayTerm, setTodayTerm] = useState<Term | null>(null);
@@ -30,7 +32,7 @@ const Index = () => {
   if (termsLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="font-mono text-muted-foreground animate-pulse">loading...</p>
+        <p className="font-mono text-muted-foreground animate-pulse">{s.loading}</p>
       </div>
     );
   }
@@ -48,11 +50,11 @@ const Index = () => {
             </h1>
           </div>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-2">
-            개발 영어 사전 — 매일 쓰는 개발 용어, 뜻을 알고 쓰자
+            {s.heroSubtitle}
           </p>
           <p className="text-sm text-muted-foreground mb-8 font-mono">
-            <span className="text-primary">const</span> understanding = <span className="text-highlight">true</span>;{" "}
-            <span className="text-muted-foreground/60">// 이해하고 쓰는 것과 모르고 쓰는 것은 천지차이</span>
+            <span className="text-primary">{s.heroCodeKw}</span> understanding = <span className="text-highlight">{s.heroCodeVal}</span>;{" "}
+            <span className="text-muted-foreground/60">{s.heroCodeComment}</span>
           </p>
           <SearchBar className="max-w-xl" />
         </div>
@@ -64,7 +66,7 @@ const Index = () => {
           <section>
             <div className="flex items-center gap-2 mb-4">
               <span className="text-sm font-mono text-primary">$</span>
-              <h2 className="text-lg font-semibold text-foreground">오늘의 단어</h2>
+              <h2 className="text-lg font-semibold text-foreground">{s.todayWord}</h2>
             </div>
             <div className="rounded-lg border border-primary/30 bg-card p-6">
               <div className="flex items-start justify-between gap-4">
@@ -79,7 +81,7 @@ const Index = () => {
                     <button
                       onClick={() => speakWord(todayTerm.word)}
                       className="rounded p-1 hover:bg-secondary transition-colors"
-                      aria-label="발음 듣기"
+                      aria-label={s.listenPronunciation}
                     >
                       <Volume2 className="h-4 w-4" />
                     </button>
@@ -89,7 +91,7 @@ const Index = () => {
                   )}
                 </div>
                 <Link to={`/term/${todayTerm.id}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
-                  자세히 <ArrowRight className="h-3 w-3" />
+                  {s.detail} <ArrowRight className="h-3 w-3" />
                 </Link>
               </div>
               <p className="mt-3 text-muted-foreground">{todayTerm.meaning_dev}</p>
@@ -108,10 +110,10 @@ const Index = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <span className="text-sm font-mono text-primary">$</span>
-              <h2 className="text-lg font-semibold text-foreground">카테고리</h2>
+              <h2 className="text-lg font-semibold text-foreground">{s.categories}</h2>
             </div>
             <Link to="/categories" className="text-sm text-primary hover:underline flex items-center gap-1">
-              전체 보기 <ArrowRight className="h-3 w-3" />
+              {s.viewAll} <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -127,7 +129,7 @@ const Index = () => {
                   <h3 className="font-mono text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     {cat.name}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-1">{count}개 용어</p>
+                  <p className="text-xs text-muted-foreground mt-1">{s.termCount(count)}</p>
                 </Link>
               );
             })}
@@ -138,7 +140,7 @@ const Index = () => {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <span className="text-sm font-mono text-primary">$</span>
-            <h2 className="text-lg font-semibold text-foreground">전체 용어</h2>
+            <h2 className="text-lg font-semibold text-foreground">{s.allTerms}</h2>
             <Badge variant="secondary" className="font-mono text-xs">{terms.length}</Badge>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
