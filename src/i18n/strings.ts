@@ -59,10 +59,12 @@ const strings = {
     heroCodeComment: "// 理解して使うのと知らずに使うのは天地の差",
     loading: "loading...",
   },
-} as const satisfies Record<LocaleCode, Record<string, unknown>>;
+} as const;
 
-export type UIStrings = typeof strings["ko"];
+export type UIStrings = {
+  [K in keyof typeof strings["ko"]]: (typeof strings["ko"])[K];
+};
 
-export function t(locale: LocaleCode): UIStrings {
-  return strings[locale] ?? strings.ko;
+export function t(locale: LocaleCode) {
+  return (strings[locale] ?? strings.ko) as UIStrings;
 }
