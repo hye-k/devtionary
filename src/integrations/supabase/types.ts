@@ -95,6 +95,7 @@ export type Database = {
           id: string
           ipa: string
           related_terms: string[] | null
+          slug: string
           updated_at: string
           word: string
         }
@@ -104,6 +105,7 @@ export type Database = {
           id?: string
           ipa: string
           related_terms?: string[] | null
+          slug: string
           updated_at?: string
           word: string
         }
@@ -113,6 +115,7 @@ export type Database = {
           id?: string
           ipa?: string
           related_terms?: string[] | null
+          slug?: string
           updated_at?: string
           word?: string
         }
