@@ -39,9 +39,9 @@ export interface Category {
 
 const DEFAULT_LOCALE = "ko";
 
-/** English has no translations row — fall back to Korean for DB queries */
+/** Map UI locale to DB locale */
 function dbLocale(locale: string): string {
-  return locale === "en" ? "ko" : locale;
+  return locale;
 }
 
 function mergeTermWithTranslation(
