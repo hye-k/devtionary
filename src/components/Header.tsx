@@ -33,7 +33,7 @@ export function Header() {
         <nav className="ml-auto flex items-center gap-2 sm:gap-4 shrink-0">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                 {s.categories}
               </Link>
             </TooltipTrigger>
