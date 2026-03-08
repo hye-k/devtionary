@@ -194,31 +194,64 @@ const Index = () => {
           </div>
         </section>
 
-        {/* 퀴즈 프로모션 */}
-        <section>
-          <Link
-            to="/quiz"
-            className="group relative block rounded-lg border border-primary/20 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 p-6 sm:p-8 hover:border-primary/40 hover:shadow-lg transition-all overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-              <div className="flex items-center justify-center rounded-lg bg-primary/10 p-3 shrink-0">
-                <Brain className="h-6 w-6 text-primary" />
+        {/* 퀴즈 샘플 */}
+        {sampleQuizTerm && sampleChoices.length === 4 && (
+          <section>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-mono text-primary">$</span>
+                <h2 className="text-lg font-semibold text-foreground">{s.quiz}</h2>
               </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="font-mono text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {s.quizPromoTitle}
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {s.quizPromoDesc}
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shrink-0 group-hover:gap-2.5 transition-all">
-                {s.quizPromoStart} <ArrowRight className="h-3.5 w-3.5" />
-              </span>
+              <Link to="/quiz" className="text-sm text-primary hover:underline flex items-center gap-1">
+                {s.quizPromoStart} <ArrowRight className="h-3 w-3" />
+              </Link>
             </div>
-          </Link>
-        </section>
+            <div className="rounded-lg border border-primary/30 bg-card p-6">
+              <p className="text-sm text-muted-foreground mb-3">{s.quizPrompt}</p>
+              {sampleQuizTerm.examples[0] && (
+                <div className="rounded-md bg-code-bg p-3 font-mono text-sm mb-4">
+                  <code className="text-foreground">{sampleQuizTerm.examples[0].code}</code>
+                </div>
+              )}
+              <div className="grid gap-2 sm:grid-cols-2">
+                {sampleChoices.map((choice, i) => {
+                  const isCorrect = choice === sampleQuizTerm.meaning_dev;
+                  const isSelected = selectedAnswer === choice;
+                  const answered = selectedAnswer !== null;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => !answered && setSelectedAnswer(choice)}
+                      disabled={answered}
+                      className={`rounded-md border p-3 text-left text-sm transition-all ${
+                        !answered
+                          ? "border-border hover:border-primary/50 hover:bg-secondary/50 cursor-pointer"
+                          : isCorrect
+                            ? "border-green-500/50 bg-green-500/10 text-foreground"
+                            : isSelected
+                              ? "border-destructive/50 bg-destructive/10 text-muted-foreground"
+                              : "border-border text-muted-foreground opacity-60"
+                      }`}
+                    >
+                      <span className="font-mono text-xs text-muted-foreground mr-2">{String.fromCharCode(65 + i)}.</span>
+                      {choice}
+                    </button>
+                  );
+                })}
+              </div>
+              {selectedAnswer && (
+                <div className="mt-4 flex items-center justify-between">
+                  <p className="text-sm text-muted-foreground">
+                    {selectedAnswer === sampleQuizTerm.meaning_dev ? s.quizPerfect : `${s.quizCorrectAnswer}: ${sampleQuizTerm.meaning_dev}`}
+                  </p>
+                  <Link to="/quiz" className="text-sm text-primary hover:underline flex items-center gap-1">
+                    {s.quizPromoStart} <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* 전체 용어 */}
         <section>
