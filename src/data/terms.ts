@@ -1,7 +1,6 @@
 export interface TermExample {
   code: string;
   translation: string;
-  source?: string;
 }
 
 export interface Term {
