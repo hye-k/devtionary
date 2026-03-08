@@ -41,7 +41,6 @@ export function Header() {
           >
             <Github className="h-5 w-5" />
           </a>
-          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
               <span>{current.flag}</span>
