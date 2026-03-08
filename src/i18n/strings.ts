@@ -147,5 +147,5 @@ export type UIStrings = {
 };
 
 export function t(locale: LocaleCode) {
-  return (strings[locale] ?? strings.ko) as UIStrings;
+  return (strings[locale] ?? strings.en) as UIStrings;
 }
