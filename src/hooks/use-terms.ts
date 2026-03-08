@@ -9,7 +9,7 @@ export interface TermExample {
 export interface TermTranslation {
   locale: string;
   pronunciation_local: string;
-  meaning_en: string;
+  meaning_word: string;
   meaning_dev: string;
   abbreviation_of?: string | null;
   examples?: TermExample[];
@@ -22,7 +22,7 @@ export interface Term {
   ipa: string;
   pronunciation_local: string;
   abbreviation_of?: string | null;
-  meaning_en: string;
+  meaning_word: string;
   meaning_dev: string;
   categories: string[];
   examples: TermExample[];
@@ -52,7 +52,7 @@ function mergeTermWithTranslation(
     examples: (translation?.examples as unknown as TermExample[]) ?? [],
     related_terms: term.related_terms,
     pronunciation_local: translation?.pronunciation_local ?? "",
-    meaning_en: translation?.meaning_en ?? "",
+    meaning_word: translation?.meaning_word ?? "",
     meaning_dev: translation?.meaning_dev ?? "",
     abbreviation_of: translation?.abbreviation_of ?? null,
   };

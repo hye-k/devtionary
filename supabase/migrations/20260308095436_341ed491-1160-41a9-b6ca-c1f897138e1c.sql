@@ -1,0 +1,1 @@
+ALTER TABLE public.term_translations RENAME COLUMN meaning_en TO meaning_word;

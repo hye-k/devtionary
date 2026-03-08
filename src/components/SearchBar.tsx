@@ -66,7 +66,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
               <span className="font-mono text-sm font-medium text-primary">{t.word}</span>
               <span className="text-xs text-muted-foreground">{t.pronunciation_local}</span>
               <span className="ml-auto text-xs text-muted-foreground truncate max-w-[200px]">
-                {t.meaning_en}
+                {t.meaning_word}
               </span>
             </button>
           ))}

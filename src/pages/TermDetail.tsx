@@ -91,9 +91,9 @@ const TermDetail = () => {
       <div className="space-y-6 mb-8">
         <div>
           <h2 className="flex items-center gap-2 text-sm font-mono text-primary mb-2">
-            <span className="text-primary/60">//</span> {s.meaningEn}
+            <span className="text-primary/60">//</span> {s.meaningWord}
           </h2>
-          <p className="text-foreground">{term.meaning_en}</p>
+          <p className="text-foreground">{term.meaning_word}</p>
         </div>
         <div>
           <h2 className="flex items-center gap-2 text-sm font-mono text-primary mb-2">
