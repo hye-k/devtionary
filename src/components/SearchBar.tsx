@@ -57,7 +57,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
             <button
               key={t.id}
               onClick={() => {
-                navigate(`/term/${encodeURIComponent(t.word)}`);
+                navigate(`/term/${t.slug}`);
                 setOpen(false);
                 setQuery("");
               }}

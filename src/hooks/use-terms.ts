@@ -78,15 +78,15 @@ export function useTerms(locale: string = DEFAULT_LOCALE) {
   });
 }
 
-export function useTerm(word: string | undefined, locale: string = DEFAULT_LOCALE) {
+export function useTerm(slug: string | undefined, locale: string = DEFAULT_LOCALE) {
   return useQuery({
-    queryKey: ["term", word, locale],
+    queryKey: ["term", slug, locale],
     queryFn: async (): Promise<Term | null> => {
-      if (!word) return null;
+      if (!slug) return null;
       const { data, error } = await supabase
         .from("terms")
         .select("*, term_translations!inner(*)")
-        .ilike("word", word)
+        .eq("slug", slug)
         .eq("term_translations.locale", locale)
         .maybeSingle();
       if (error) throw error;
@@ -96,7 +96,7 @@ export function useTerm(word: string | undefined, locale: string = DEFAULT_LOCAL
         : (data as any).term_translations;
       return mergeTermWithTranslation(data, tr);
     },
-    enabled: !!word,
+    enabled: !!slug,
   });
 }
 
