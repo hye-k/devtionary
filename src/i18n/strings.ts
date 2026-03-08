@@ -113,6 +113,10 @@ const strings = {
     quizKeepGoing: "계속 공부해요! 💪",
     quizRetry: "다시 풀기",
     quizCorrectAnswer: "정답",
+    tooltipCategories: "카테고리별 용어 탐색",
+    tooltipQuiz: "용어 퀴즈 풀기",
+    tooltipGithub: "버그 신고 · 기능 제안",
+    tooltipLanguage: "언어 변경",
   },
   ja: {
     categories: "カテゴリー",
