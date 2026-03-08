@@ -22,6 +22,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <GARouteTracker />
           <MetaTags />
           <Header />
           <Routes>
