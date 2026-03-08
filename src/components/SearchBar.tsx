@@ -144,11 +144,8 @@ export function SearchBar({ className = "" }: { className?: string }) {
               <span className="font-mono text-sm font-medium text-primary">
                 {renderHighlightedText(term.word, q)}
               </span>
-              <span className="text-xs text-muted-foreground">
-                {renderHighlightedText(term.pronunciation_local, q)}
-              </span>
               <span className="ml-auto max-w-[200px] truncate text-xs text-muted-foreground">
-                {renderHighlightedText(term.meaning_word, q)}
+                {term.meaning_word}
               </span>
             </button>
           ))}
