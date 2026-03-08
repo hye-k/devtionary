@@ -32,6 +32,16 @@ export function Header() {
           <Link to="/quiz" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {s.quiz}
           </Link>
+          <a
+            href="https://github.com/hye-k/devtionary/issues/new"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="GitHub Issues"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
               <span>{current.flag}</span>
