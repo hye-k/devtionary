@@ -42,6 +42,8 @@ const Index = () => {
   const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories(locale);
   const [todayTerm, setTodayTerm] = useState<Term | null>(null);
+  const [sampleQuizTerm, setSampleQuizTerm] = useState<Term | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(terms.length / TERMS_PER_PAGE);
