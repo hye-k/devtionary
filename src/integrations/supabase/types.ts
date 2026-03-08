@@ -14,7 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      terms: {
+        Row: {
+          abbreviation_of: string | null
+          categories: string[]
+          created_at: string
+          examples: Json
+          id: string
+          ipa: string
+          meaning_dev: string
+          meaning_en: string
+          pronunciation_kr: string
+          related_terms: string[] | null
+          updated_at: string
+          word: string
+        }
+        Insert: {
+          abbreviation_of?: string | null
+          categories?: string[]
+          created_at?: string
+          examples?: Json
+          id?: string
+          ipa: string
+          meaning_dev: string
+          meaning_en: string
+          pronunciation_kr: string
+          related_terms?: string[] | null
+          updated_at?: string
+          word: string
+        }
+        Update: {
+          abbreviation_of?: string | null
+          categories?: string[]
+          created_at?: string
+          examples?: Json
+          id?: string
+          ipa?: string
+          meaning_dev?: string
+          meaning_en?: string
+          pronunciation_kr?: string
+          related_terms?: string[] | null
+          updated_at?: string
+          word?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
