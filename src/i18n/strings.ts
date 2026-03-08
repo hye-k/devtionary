@@ -70,6 +70,9 @@ const strings = {
     tooltipQuiz: "Test your knowledge",
     tooltipGithub: "Report a bug or suggest a feature",
     tooltipLanguage: "Change language",
+    quizPromoTitle: "Test Your Knowledge",
+    quizPromoDesc: "Think you know your dev terms? Take a quick quiz and find out!",
+    quizPromoStart: "Start Quiz",
   },
   ko: {
     categories: "카테고리",
@@ -117,6 +120,9 @@ const strings = {
     tooltipQuiz: "용어 퀴즈 풀기",
     tooltipGithub: "버그 신고 · 기능 제안",
     tooltipLanguage: "언어 변경",
+    quizPromoTitle: "실력을 테스트해 보세요",
+    quizPromoDesc: "개발 용어, 얼마나 알고 계신가요? 퀴즈로 확인해 보세요!",
+    quizPromoStart: "퀴즈 시작",
   },
   ja: {
     categories: "カテゴリー",
@@ -164,6 +170,9 @@ const strings = {
     tooltipQuiz: "用語クイズに挑戦",
     tooltipGithub: "バグ報告・機能提案",
     tooltipLanguage: "言語を変更",
+    quizPromoTitle: "知識をテストしよう",
+    quizPromoDesc: "開発用語、どれだけ知っていますか？クイズで確かめよう！",
+    quizPromoStart: "クイズ開始",
   },
   fr: {
     categories: "Catégories",
@@ -211,6 +220,9 @@ const strings = {
     tooltipQuiz: "Testez vos connaissances",
     tooltipGithub: "Signaler un bug ou suggérer une fonctionnalité",
     tooltipLanguage: "Changer de langue",
+    quizPromoTitle: "Testez vos connaissances",
+    quizPromoDesc: "Vous pensez maîtriser les termes dev ? Faites le quiz pour le vérifier !",
+    quizPromoStart: "Lancer le quiz",
   },
 } as const;
 
