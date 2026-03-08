@@ -51,7 +51,7 @@ function generateQuestions(terms: Term[], count: number): QuizQuestion[] {
       exampleCode: ex.code,
       exampleTranslation: ex.translation,
       correctAnswer,
-      options,
+      options
     };
   });
 }
@@ -123,8 +123,8 @@ export default function Quiz() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="font-mono text-muted-foreground animate-pulse">{s.loading}</p>
-      </div>
-    );
+      </div>);
+
   }
 
   /* ── Category Selection ── */
@@ -145,8 +145,8 @@ export default function Quiz() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             <button
               onClick={() => startQuiz(null)}
-              className="rounded-lg border border-primary/30 bg-card p-4 hover:border-primary hover:shadow-md transition-all text-left group"
-            >
+              className="rounded-lg border border-primary/30 bg-card p-4 hover:border-primary hover:shadow-md transition-all text-left group">
+              
               <div className="text-2xl mb-2">🎲</div>
               <h3 className="font-mono text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                 {s.quizAllCategories}
@@ -160,20 +160,20 @@ export default function Quiz() {
                 <button
                   key={cat.id}
                   onClick={() => startQuiz(cat.slug)}
-                  className="rounded-lg border border-border bg-card p-4 hover:border-primary/50 hover:shadow-md transition-all text-left group"
-                >
+                  className="rounded-lg border border-border bg-card p-4 hover:border-primary/50 hover:shadow-md transition-all text-left group">
+                  
                   <div className="text-2xl mb-2">{cat.icon}</div>
                   <h3 className="font-mono text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     {cat.name}
                   </h3>
                   <p className="text-xs text-muted-foreground mt-1">{s.termCount(count)}</p>
-                </button>
-              );
+                </button>);
+
             })}
           </div>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   /* ── Quiz ── */
@@ -188,7 +188,7 @@ export default function Quiz() {
               <span>{s.quizQuestion} {currentQ + 1} / {questions.length}</span>
               <span>{answers.filter((a) => a !== null).length} {s.quizAnswered}</span>
             </div>
-            <Progress value={((currentQ + 1) / questions.length) * 100} className="h-2" />
+            <Progress value={(currentQ + 1) / questions.length * 100} className="h-2" />
           </div>
 
           {/* Question Card */}
@@ -203,7 +203,7 @@ export default function Quiz() {
                 <code className="text-foreground">{q.exampleCode}</code>
               </div>
 
-              <p className="text-sm text-muted-foreground">{s.quizPrompt}</p>
+              <p className="text-sm font-semibold text-primary">{s.quizPrompt}</p>
 
               {/* Options */}
               <div className="grid gap-2">
@@ -214,15 +214,15 @@ export default function Quiz() {
                       key={i}
                       onClick={() => selectAnswer(currentQ, i)}
                       className={`text-left rounded-lg border p-3 text-sm transition-all ${
-                        isSelected
-                          ? "border-primary bg-primary/10 text-foreground"
-                          : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"
-                      }`}
-                    >
+                      isSelected ?
+                      "border-primary bg-primary/10 text-foreground" :
+                      "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"}`
+                      }>
+                      
                       <span className="font-mono text-primary mr-2">{String.fromCharCode(65 + i)}.</span>
                       {opt}
-                    </button>
-                  );
+                    </button>);
+
                 })}
               </div>
             </CardContent>
@@ -234,49 +234,49 @@ export default function Quiz() {
               variant="outline"
               size="sm"
               onClick={() => setCurrentQ((p) => Math.max(0, p - 1))}
-              disabled={currentQ === 0}
-            >
+              disabled={currentQ === 0}>
+              
               <ArrowLeft className="h-4 w-4 mr-1" /> {s.quizPrev}
             </Button>
 
-            {currentQ < questions.length - 1 ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setCurrentQ((p) => p + 1)}
-              >
+            {currentQ < questions.length - 1 ?
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentQ((p) => p + 1)}>
+              
                 {s.quizNext} <ArrowRight className="h-4 w-4 ml-1" />
-              </Button>
-            ) : (
-              <Button
-                size="sm"
-                onClick={submit}
-                disabled={!allAnswered}
-              >
+              </Button> :
+
+            <Button
+              size="sm"
+              onClick={submit}
+              disabled={!allAnswered}>
+              
                 {s.quizSubmit}
               </Button>
-            )}
+            }
           </div>
 
           {/* Quick nav dots */}
           <div className="flex justify-center gap-1.5 flex-wrap">
-            {questions.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentQ(i)}
-                className={`h-3 w-3 rounded-full transition-all ${
-                  i === currentQ
-                    ? "bg-primary scale-125"
-                    : answers[i] !== null
-                    ? "bg-primary/40"
-                    : "bg-secondary"
-                }`}
-              />
-            ))}
+            {questions.map((_, i) =>
+            <button
+              key={i}
+              onClick={() => setCurrentQ(i)}
+              className={`h-3 w-3 rounded-full transition-all ${
+              i === currentQ ?
+              "bg-primary scale-125" :
+              answers[i] !== null ?
+              "bg-primary/40" :
+              "bg-secondary"}`
+              } />
+
+            )}
           </div>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   /* ── Results ── */
@@ -291,13 +291,13 @@ export default function Quiz() {
               {score} / {questions.length}
             </h2>
             <p className="text-muted-foreground">
-              {score === questions.length
-                ? s.quizPerfect
-                : score >= questions.length * 0.7
-                ? s.quizGreat
-                : s.quizKeepGoing}
+              {score === questions.length ?
+              s.quizPerfect :
+              score >= questions.length * 0.7 ?
+              s.quizGreat :
+              s.quizKeepGoing}
             </p>
-            <Progress value={(score / questions.length) * 100} className="h-3 max-w-xs mx-auto" />
+            <Progress value={score / questions.length * 100} className="h-3 max-w-xs mx-auto" />
             <Button onClick={reset} variant="outline" className="mt-4">
               <RotateCcw className="h-4 w-4 mr-1" /> {s.quizRetry}
             </Button>
@@ -314,11 +314,11 @@ export default function Quiz() {
                 <CardContent className="py-4 space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      {isCorrect ? (
-                        <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
-                      ) : (
-                        <XCircle className="h-5 w-5 text-destructive shrink-0" />
-                      )}
+                      {isCorrect ?
+                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0" /> :
+
+                      <XCircle className="h-5 w-5 text-destructive shrink-0" />
+                      }
                       <Link to={`/term/${q.term.slug}`} className="font-mono font-bold text-foreground hover:text-primary transition-colors">
                         {q.term.word}
                       </Link>
@@ -328,16 +328,16 @@ export default function Quiz() {
                   <div className="rounded-md bg-code-bg p-2 font-mono text-xs">
                     <code>{q.exampleCode}</code>
                   </div>
-                  {!isCorrect && chosen !== null && (
-                    <p className="text-sm text-destructive line-through">{q.options[chosen]}</p>
-                  )}
+                  {!isCorrect && chosen !== null &&
+                  <p className="text-sm text-destructive line-through">{q.options[chosen]}</p>
+                  }
                   <p className="text-sm text-primary">{s.quizCorrectAnswer}: {q.correctAnswer}</p>
                 </CardContent>
-              </Card>
-            );
+              </Card>);
+
           })}
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
