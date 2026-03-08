@@ -18,7 +18,7 @@ const TermDetail = () => {
   const s = t(locale);
   const { data: term, isLoading } = useTerm(slug, locale);
   const { data: allTerms = [] } = useTerms(locale);
-  const { data: categories = [] } = useCategories();
+  const { data: categories = [] } = useCategories(locale);
 
   if (isLoading) {
     return (
