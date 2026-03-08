@@ -16,8 +16,8 @@ export function Header() {
   const current = LOCALES.find((l) => l.code === locale)!;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="container flex items-center gap-4 py-3">
+    <header className="sticky top-0 z-[90] overflow-visible border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="container flex items-center gap-4 py-3 overflow-visible">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <Terminal className="h-6 w-6 text-primary" />
           <span className="font-mono text-lg font-bold text-foreground">
