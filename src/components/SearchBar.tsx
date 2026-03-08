@@ -60,7 +60,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
               className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-secondary transition-colors"
             >
               <span className="font-mono text-sm font-medium text-primary">{t.word}</span>
-              <span className="text-xs text-muted-foreground">{t.pronunciation_kr}</span>
+              <span className="text-xs text-muted-foreground">{t.pronunciation_local}</span>
               <span className="ml-auto text-xs text-muted-foreground truncate max-w-[200px]">
                 {t.meaning_en}
               </span>
