@@ -129,27 +129,27 @@ export default function Quiz() {
     return (
       <div className="min-h-screen">
         <div className="container py-10 max-w-2xl space-y-6">
-          {/* Back link & Progress */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 mb-2">
-              <Link
-                to="/quiz"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
-              >
-                <ArrowLeft className="h-3 w-3" /> {s.quiz}
-              </Link>
-              {selectedCategory && (
-                <Badge variant="secondary" className="font-mono text-xs">
-                  {categories.find((c) => c.slug === selectedCategory)?.icon}{" "}
-                  {categories.find((c) => c.slug === selectedCategory)?.name}
-                </Badge>
-              )}
-              {!selectedCategory && (
-                <Badge variant="secondary" className="font-mono text-xs">
-                  🎲 {s.quizAllCategories}
-                </Badge>
-              )}
+          {/* Category header — matches /category/:slug design */}
+          <div>
+            <Link
+              to="/quiz"
+              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" /> {s.quiz}
+            </Link>
+
+            <div className="mb-6">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-3xl">{selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.icon : "🎲"}</span>
+                <h1 className="font-mono text-2xl font-bold text-foreground">
+                  {selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.name : s.quizAllCategories}
+                </h1>
+              </div>
             </div>
+          </div>
+
+          {/* Progress */}
+          <div className="space-y-2">
             <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
               <span>
                 {s.quizQuestion} {currentQ + 1} / {questions.length}
