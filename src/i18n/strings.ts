@@ -207,6 +207,10 @@ const strings = {
     quizKeepGoing: "Continuez à étudier ! 💪",
     quizRetry: "Réessayer",
     quizCorrectAnswer: "Réponse",
+    tooltipCategories: "Parcourir les termes par catégorie",
+    tooltipQuiz: "Testez vos connaissances",
+    tooltipGithub: "Signaler un bug ou suggérer une fonctionnalité",
+    tooltipLanguage: "Changer de langue",
   },
 } as const;
 
