@@ -76,6 +76,7 @@ const strings = {
     quizPromoStart: "Start Quiz",
     quizMoreQuiz: "Try More Quizzes",
     quizYourAnswer: "Your answer",
+    menu: "Menu",
   },
   ko: {
     categories: "카테고리",
