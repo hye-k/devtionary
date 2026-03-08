@@ -1,11 +1,14 @@
 import { useParams, Link } from "react-router-dom";
-import { categories, terms } from "@/data/terms";
+import { useCategories, useTerms } from "@/hooks/use-terms";
 import { TermCard } from "@/components/TermCard";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const CategoryDetail = () => {
   const { slug } = useParams();
+  const { data: categories = [] } = useCategories();
+  const { data: terms = [] } = useTerms();
+  
   const category = categories.find((c) => c.slug === slug);
   const catTerms = terms.filter((t) => t.categories.includes(slug ?? ""));
 

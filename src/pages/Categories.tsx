@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-import { categories, terms } from "@/data/terms";
+import { useCategories, useTerms } from "@/hooks/use-terms";
 import { ArrowRight } from "lucide-react";
 
 const Categories = () => {
+  const { data: categories = [] } = useCategories();
+  const { data: terms = [] } = useTerms();
+
   return (
     <div className="container py-8">
       <h1 className="font-mono text-2xl font-bold text-foreground mb-6">

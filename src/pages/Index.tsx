@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { TermCard } from "@/components/TermCard";
-import { terms, categories } from "@/data/terms";
+import { useTerms, useCategories, Term } from "@/hooks/use-terms";
 import { Volume2, Terminal, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -14,12 +14,24 @@ function speakWord(word: string) {
 }
 
 const Index = () => {
-  const [todayTerm, setTodayTerm] = useState(terms[0]);
+  const { data: terms = [], isLoading: termsLoading } = useTerms();
+  const { data: categories = [] } = useCategories();
+  const [todayTerm, setTodayTerm] = useState<Term | null>(null);
 
   useEffect(() => {
-    const dayIndex = new Date().getDate() % terms.length;
-    setTodayTerm(terms[dayIndex]);
-  }, []);
+    if (terms.length > 0) {
+      const dayIndex = new Date().getDate() % terms.length;
+      setTodayTerm(terms[dayIndex]);
+    }
+  }, [terms]);
+
+  if (termsLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-mono text-muted-foreground animate-pulse">loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -46,46 +58,48 @@ const Index = () => {
 
       <div className="container py-10 space-y-12">
         {/* 오늘의 단어 */}
-        <section>
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-sm font-mono text-primary">$</span>
-            <h2 className="text-lg font-semibold text-foreground">오늘의 단어</h2>
-          </div>
-          <div className="rounded-lg border border-primary/30 bg-card p-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <Link to={`/term/${todayTerm.id}`} className="font-mono text-2xl font-bold text-primary hover:underline">
-                  {todayTerm.word}
-                </Link>
-                <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
-                  <span className="font-mono">{todayTerm.ipa}</span>
-                  <span>·</span>
-                  <span>{todayTerm.pronunciation_kr}</span>
-                  <button
-                    onClick={() => speakWord(todayTerm.word)}
-                    className="rounded p-1 hover:bg-secondary transition-colors"
-                    aria-label="발음 듣기"
-                  >
-                    <Volume2 className="h-4 w-4" />
-                  </button>
-                </div>
-                {todayTerm.abbreviation_of && (
-                  <p className="mt-2 font-mono text-sm text-accent">← {todayTerm.abbreviation_of}</p>
-                )}
-              </div>
-              <Link to={`/term/${todayTerm.id}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
-                자세히 <ArrowRight className="h-3 w-3" />
-              </Link>
+        {todayTerm && (
+          <section>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-sm font-mono text-primary">$</span>
+              <h2 className="text-lg font-semibold text-foreground">오늘의 단어</h2>
             </div>
-            <p className="mt-3 text-muted-foreground">{todayTerm.meaning_dev}</p>
-            {todayTerm.examples[0] && (
-              <div className="mt-4 rounded-md bg-code-bg p-3 font-mono text-sm">
-                <code className="text-foreground">{todayTerm.examples[0].code}</code>
-                <p className="mt-1 text-muted-foreground text-xs">→ {todayTerm.examples[0].translation}</p>
+            <div className="rounded-lg border border-primary/30 bg-card p-6">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <Link to={`/term/${todayTerm.id}`} className="font-mono text-2xl font-bold text-primary hover:underline">
+                    {todayTerm.word}
+                  </Link>
+                  <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="font-mono">{todayTerm.ipa}</span>
+                    <span>·</span>
+                    <span>{todayTerm.pronunciation_kr}</span>
+                    <button
+                      onClick={() => speakWord(todayTerm.word)}
+                      className="rounded p-1 hover:bg-secondary transition-colors"
+                      aria-label="발음 듣기"
+                    >
+                      <Volume2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                  {todayTerm.abbreviation_of && (
+                    <p className="mt-2 font-mono text-sm text-accent">← {todayTerm.abbreviation_of}</p>
+                  )}
+                </div>
+                <Link to={`/term/${todayTerm.id}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
+                  자세히 <ArrowRight className="h-3 w-3" />
+                </Link>
               </div>
-            )}
-          </div>
-        </section>
+              <p className="mt-3 text-muted-foreground">{todayTerm.meaning_dev}</p>
+              {todayTerm.examples[0] && (
+                <div className="mt-4 rounded-md bg-code-bg p-3 font-mono text-sm">
+                  <code className="text-foreground">{todayTerm.examples[0].code}</code>
+                  <p className="mt-1 text-muted-foreground text-xs">→ {todayTerm.examples[0].translation}</p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* 카테고리 */}
         <section>

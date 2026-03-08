@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
-import { terms } from "@/data/terms";
+import { useTerms } from "@/hooks/use-terms";
 
 export function SearchBar({ className = "" }: { className?: string }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { data: terms = [] } = useTerms();
 
   const filtered = query.length > 0
     ? terms.filter(

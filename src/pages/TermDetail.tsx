@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { terms, categories } from "@/data/terms";
+import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { Volume2, ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -12,7 +12,17 @@ function speakWord(word: string) {
 
 const TermDetail = () => {
   const { id } = useParams();
-  const term = terms.find((t) => t.id === id);
+  const { data: term, isLoading } = useTerm(id);
+  const { data: allTerms = [] } = useTerms();
+  const { data: categories = [] } = useCategories();
+
+  if (isLoading) {
+    return (
+      <div className="container py-20 text-center">
+        <p className="font-mono text-muted-foreground animate-pulse">loading...</p>
+      </div>
+    );
+  }
 
   if (!term) {
     return (
@@ -24,7 +34,7 @@ const TermDetail = () => {
   }
 
   const relatedTerms = term.related_terms
-    ?.map((name) => terms.find((t) => t.word.toLowerCase() === name.toLowerCase()))
+    ?.map((name) => allTerms.find((t) => t.word.toLowerCase() === name.toLowerCase()))
     .filter(Boolean) ?? [];
 
   return (
