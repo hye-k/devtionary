@@ -197,14 +197,6 @@ export default function Quiz() {
       <div className="min-h-screen">
         <div className="container py-10 max-w-2xl space-y-6">
           {/* Category & Progress */}
-          {selectedCategory && (
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="font-mono text-xs">
-                {categories.find((c) => c.slug === selectedCategory)?.icon}{" "}
-                {categories.find((c) => c.slug === selectedCategory)?.name}
-              </Badge>
-            </div>
-          )}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
               <span>
