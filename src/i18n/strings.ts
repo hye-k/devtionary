@@ -16,7 +16,7 @@ const strings = {
     termNotFound: "용어를 찾을 수 없습니다.",
     listenPronunciation: "발음 듣기",
     abbreviationOf: "약어 풀이",
-    meaningEn: "영어 뜻",
+    meaningWord: "영어 뜻",
     meaningDev: "개발에서의 뜻",
     examples: "예문",
     relatedTerms: "관련 용어",
