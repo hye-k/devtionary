@@ -38,12 +38,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const filtered = useMemo(
     () =>
       q.length > 0
-        ? terms.filter(
-            (term) =>
-              term.word.toLowerCase().startsWith(q) ||
-              term.pronunciation_local.toLowerCase().startsWith(q) ||
-              (q.length >= 2 && term.meaning_word.toLowerCase().startsWith(q)),
-          )
+        ? terms.filter((term) => term.word.toLowerCase().startsWith(q))
         : [],
     [q, terms],
   );
@@ -149,11 +144,8 @@ export function SearchBar({ className = "" }: { className?: string }) {
               <span className="font-mono text-sm font-medium text-primary">
                 {renderHighlightedText(term.word, q)}
               </span>
-              <span className="text-xs text-muted-foreground">
-                {renderHighlightedText(term.pronunciation_local, q)}
-              </span>
               <span className="ml-auto max-w-[200px] truncate text-xs text-muted-foreground">
-                {renderHighlightedText(term.meaning_word, q)}
+                {term.meaning_word}
               </span>
             </button>
           ))}
