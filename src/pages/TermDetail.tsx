@@ -13,10 +13,10 @@ function speakWord(word: string) {
 }
 
 const TermDetail = () => {
-  const { word } = useParams();
+  const { slug } = useParams();
   const { locale } = useLocale();
   const s = t(locale);
-  const { data: term, isLoading } = useTerm(word ? decodeURIComponent(word) : undefined, locale);
+  const { data: term, isLoading } = useTerm(slug, locale);
   const { data: allTerms = [] } = useTerms(locale);
   const { data: categories = [] } = useCategories();
 
