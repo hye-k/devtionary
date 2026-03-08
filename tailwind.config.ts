@@ -105,7 +105,7 @@ export default {
   					height: '0'
   				}
   			},
-  			'blink': {
+  			blink: {
   				'0%, 100%': {
   					opacity: '1'
   				},
@@ -127,7 +127,7 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'blink': 'blink 1s step-end infinite',
+  			blink: 'blink 1s step-end infinite',
   			'fade-in': 'fade-in 0.3s ease-out'
   		}
   	}
