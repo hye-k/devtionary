@@ -170,6 +170,9 @@ const strings = {
     tooltipQuiz: "用語クイズに挑戦",
     tooltipGithub: "バグ報告・機能提案",
     tooltipLanguage: "言語を変更",
+    quizPromoTitle: "知識をテストしよう",
+    quizPromoDesc: "開発用語、どれだけ知っていますか？クイズで確かめよう！",
+    quizPromoStart: "クイズ開始",
   },
   fr: {
     categories: "Catégories",
