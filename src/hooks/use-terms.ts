@@ -105,16 +105,28 @@ export function useTerm(slug: string | undefined, locale: string = DEFAULT_LOCAL
   });
 }
 
-export function useCategories() {
+export function useCategories(locale: string = DEFAULT_LOCALE) {
   return useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories", locale],
     queryFn: async (): Promise<Category[]> => {
       const { data, error } = await supabase
         .from("categories")
-        .select("*")
+        .select("*, category_translations!inner(name, description)")
+        .eq("category_translations.locale", locale)
         .order("name");
       if (error) throw error;
-      return data ?? [];
+      return (data ?? []).map((cat: any) => {
+        const tr = Array.isArray(cat.category_translations)
+          ? cat.category_translations[0]
+          : cat.category_translations;
+        return {
+          id: cat.id,
+          name: tr?.name ?? cat.name,
+          icon: cat.icon,
+          description: tr?.description ?? cat.description,
+          slug: cat.slug,
+        };
+      });
     },
   });
 }
