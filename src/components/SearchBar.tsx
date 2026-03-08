@@ -14,13 +14,13 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const { data: terms = [] } = useTerms(locale);
   const s = t(locale);
 
-  const q = query.toLowerCase();
-  const filtered = query.length > 0
+  const q = query.trim().toLowerCase();
+  const filtered = q.length > 0
     ? terms.filter(
         (term) =>
           term.word.toLowerCase().includes(q) ||
           term.pronunciation_local.toLowerCase().includes(q) ||
-          term.meaning_word.toLowerCase().includes(q)
+          (q.length >= 2 && term.meaning_word.toLowerCase().includes(q))
       ).slice(0, 8)
     : [];
 
