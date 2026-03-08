@@ -9,6 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function Header() {
   const { locale, setLocale } = useLocale();
@@ -26,40 +31,60 @@ export function Header() {
         </Link>
         <SearchBar className="flex-1 max-w-xs hidden sm:block" />
         <nav className="ml-auto flex items-center gap-4">
-          <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            {s.categories}
-          </Link>
-          <Link to="/quiz" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            {s.quiz}
-          </Link>
-          <a
-            href="https://github.com/hye-k/devtionary/issues/new"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub Issues"
-          >
-            <Github className="h-5 w-5" />
-          </a>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
-              <span>{current.flag}</span>
-              <span className="hidden sm:inline">{current.label}</span>
-              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {LOCALES.map((l) => (
-                <DropdownMenuItem
-                  key={l.code}
-                  onClick={() => setLocale(l.code)}
-                  className={locale === l.code ? "bg-secondary" : ""}
-                >
-                  <span className="mr-2">{l.flag}</span>
-                  {l.label}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {s.categories}
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>{s.tooltipCategories}</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link to="/quiz" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {s.quiz}
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>{s.tooltipQuiz}</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <a
+                href="https://github.com/hye-k/devtionary/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="GitHub Issues"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </TooltipTrigger>
+            <TooltipContent>{s.tooltipGithub}</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-foreground hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
+                  <span>{current.flag}</span>
+                  <span className="hidden sm:inline">{current.label}</span>
+                  <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {LOCALES.map((l) => (
+                    <DropdownMenuItem
+                      key={l.code}
+                      onClick={() => setLocale(l.code)}
+                      className={locale === l.code ? "bg-secondary" : ""}
+                    >
+                      <span className="mr-2">{l.flag}</span>
+                      {l.label}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TooltipTrigger>
+            <TooltipContent>{s.tooltipLanguage}</TooltipContent>
+          </Tooltip>
         </nav>
       </div>
     </header>
