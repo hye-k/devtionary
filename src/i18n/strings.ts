@@ -233,6 +233,8 @@ const strings = {
     quizPromoTitle: "Testez vos connaissances",
     quizPromoDesc: "Vous pensez maîtriser les termes dev ? Faites le quiz pour le vérifier !",
     quizPromoStart: "Lancer le quiz",
+    quizMoreQuiz: "Plus de quiz",
+    quizYourAnswer: "Votre réponse",
   },
 } as const;
 

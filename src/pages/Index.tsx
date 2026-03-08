@@ -206,7 +206,7 @@ const Index = () => {
           <section>
             <div className="flex items-center gap-2 mb-4">
               <span className="text-sm font-mono text-primary">$</span>
-              <h2 className="text-lg font-semibold text-foreground">{s.quiz}</h2>
+              <h2 className="text-lg font-semibold text-foreground">{s.todayQuiz}</h2>
             </div>
             <div className="relative rounded-lg border border-primary/30 bg-card p-6 overflow-hidden">
               <p className="text-sm text-muted-foreground mb-3">{s.quizPrompt}</p>
@@ -240,14 +240,23 @@ const Index = () => {
               {/* 결과 오버레이 */}
               {selectedAnswer && (
                 <div className="absolute inset-0 bg-card/95 backdrop-blur-sm flex flex-col items-center justify-center gap-4 p-6 animate-in fade-in duration-300">
-                  <p className="text-lg font-semibold text-foreground text-center">
-                    {selectedAnswer === sampleQuizTerm.meaning_dev ? "🎉 " + s.quizPerfect : "❌ " + s.quizCorrectAnswer + ": " + sampleQuizTerm.meaning_dev}
-                  </p>
+                  {selectedAnswer === sampleQuizTerm.meaning_dev ? (
+                    <p className="text-lg font-semibold text-foreground text-center">🎉 {s.quizPerfect}</p>
+                  ) : (
+                    <div className="space-y-2 text-center">
+                      <p className="text-sm text-muted-foreground">
+                        <span className="text-destructive font-medium">{s.quizYourAnswer}:</span> {selectedAnswer}
+                      </p>
+                      <p className="text-sm text-primary font-medium">
+                        {s.quizCorrectAnswer}: {sampleQuizTerm.meaning_dev}
+                      </p>
+                    </div>
+                  )}
                   <Link
                     to="/quiz"
                     className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
-                    {s.quizPromoStart} <ArrowRight className="h-4 w-4" />
+                    {s.quizMoreQuiz} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               )}
