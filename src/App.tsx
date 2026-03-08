@@ -35,6 +35,7 @@ const App = () => (
             <Route path="/quiz" element={<Quiz />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </LocaleProvider>
     </TooltipProvider>
