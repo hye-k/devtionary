@@ -33,9 +33,10 @@ const TermDetail = () => {
     );
   }
 
-  const relatedTerms = term.related_terms
-    ?.map((name) => allTerms.find((t) => t.word.toLowerCase() === name.toLowerCase()))
-    .filter(Boolean) ?? [];
+  const relatedTerms = (term.related_terms ?? [])
+    .filter((name): name is string => !!name)
+    .map((name) => allTerms.find((t) => t.word.toLowerCase() === name.toLowerCase()))
+    .filter(Boolean);
 
   return (
     <div className="container max-w-3xl py-8">
