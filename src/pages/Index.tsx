@@ -56,8 +56,8 @@ const Index = () => {
     if (terms.length > 0) {
       const dayIndex = new Date().getDate() % terms.length;
       setTodayTerm(terms[dayIndex]);
-      // Pick a different term for quiz sample
-      const quizIndex = (dayIndex + 3) % terms.length;
+      // Pick a different term for quiz sample, also day-based
+      const quizIndex = (dayIndex + 7) % terms.length;
       setSampleQuizTerm(terms[quizIndex]);
       setSelectedAnswer(null);
     }
