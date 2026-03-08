@@ -115,12 +115,12 @@ export function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-72 flex flex-col gap-0 p-0">
+              <SheetContent side="right" className="w-72 flex flex-col gap-0">
                 <SheetTitle className="sr-only">{s.menu}</SheetTitle>
-                <div className="p-4 border-b border-border">
+                <div className="pb-4 border-b border-border">
                   <SearchBar className="w-full" />
                 </div>
-                <nav className="flex flex-col p-4 gap-1">
+                <nav className="flex flex-col pt-2 gap-1">
                   <Link
                     to="/categories"
                     onClick={() => setOpen(false)}
