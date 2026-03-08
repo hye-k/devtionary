@@ -31,6 +31,7 @@ const strings = {
     categoryNotFound: "Category not found.",
     toCategoryList: "Back to categories",
     todayWord: "Word of the Day",
+    todayQuiz: "Quiz of the Day",
     viewAll: "View all",
     allTerms: "All Terms",
     detail: "Details",
