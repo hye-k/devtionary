@@ -117,6 +117,18 @@ const Index = () => {
                   {todayTerm.abbreviation_of && (
                     <p className="mt-2 font-mono text-sm text-accent">← {todayTerm.abbreviation_of}</p>
                   )}
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {todayTerm.categories.map((catSlug) => {
+                      const cat = categories.find((c) => c.slug === catSlug);
+                      return (
+                        <Link key={catSlug} to={`/category/${catSlug}`}>
+                          <Badge variant="secondary" className="font-mono text-xs hover:bg-primary/10 transition-colors">
+                            {cat?.icon} {cat?.name ?? catSlug}
+                          </Badge>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
                 <Link to={`/term/${todayTerm.slug}`} className="text-sm text-primary hover:underline shrink-0 flex items-center gap-1">
                   {s.detail} <ArrowRight className="h-3 w-3" />
@@ -125,8 +137,8 @@ const Index = () => {
               <p className="mt-3 text-muted-foreground">{todayTerm.meaning_dev}</p>
               {todayTerm.examples[0] && (
                 <div className="mt-4 rounded-md bg-code-bg p-3 font-mono text-sm">
-                  <code className="text-foreground">{todayTerm.examples[0].code}</code>
-                  <p className="mt-1 text-muted-foreground text-xs">→ {todayTerm.examples[0].translation}</p>
+                  <code className="text-foreground">{highlightWord(todayTerm.examples[0].code, todayTerm.word)}</code>
+                  <p className="mt-1 text-muted-foreground text-xs">→ {highlightWord(todayTerm.examples[0].translation, todayTerm.word)}</p>
                 </div>
               )}
             </div>
