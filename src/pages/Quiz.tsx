@@ -131,12 +131,25 @@ export default function Quiz() {
         <div className="container py-10 max-w-2xl space-y-6">
           {/* Back link & Progress */}
           <div className="space-y-2">
-            <Link
-              to="/quiz"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mb-2"
-            >
-              <ArrowLeft className="h-3 w-3" /> {s.quiz}
-            </Link>
+            <div className="flex items-center gap-2 mb-2">
+              <Link
+                to="/quiz"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+              >
+                <ArrowLeft className="h-3 w-3" /> {s.quiz}
+              </Link>
+              {selectedCategory && (
+                <Badge variant="secondary" className="font-mono text-xs">
+                  {categories.find((c) => c.slug === selectedCategory)?.icon}{" "}
+                  {categories.find((c) => c.slug === selectedCategory)?.name}
+                </Badge>
+              )}
+              {!selectedCategory && (
+                <Badge variant="secondary" className="font-mono text-xs">
+                  🎲 {s.quizAllCategories}
+                </Badge>
+              )}
+            </div>
             <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
               <span>
                 {s.quizQuestion} {currentQ + 1} / {questions.length}
