@@ -13,6 +13,7 @@ export interface TermTranslation {
   meaning_en: string;
   meaning_dev: string;
   abbreviation_of?: string | null;
+  examples?: TermExample[];
 }
 
 export interface Term {
@@ -47,7 +48,7 @@ function mergeTermWithTranslation(
     word: term.word,
     ipa: term.ipa,
     categories: term.categories,
-    examples: (term.examples as unknown as TermExample[]) ?? [],
+    examples: (translation?.examples as unknown as TermExample[]) ?? [],
     related_terms: term.related_terms,
     pronunciation_local: translation?.pronunciation_local ?? "",
     meaning_en: translation?.meaning_en ?? "",
