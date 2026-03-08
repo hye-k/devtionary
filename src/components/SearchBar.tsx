@@ -20,9 +20,9 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const filtered = q.length > 0
     ? terms.filter(
         (term) =>
-          term.word.toLowerCase().includes(q) ||
-          term.pronunciation_local.toLowerCase().includes(q) ||
-          (q.length >= 2 && term.meaning_word.toLowerCase().includes(q))
+          term.word.toLowerCase().startsWith(q) ||
+          term.pronunciation_local.toLowerCase().startsWith(q) ||
+          (q.length >= 2 && term.meaning_word.toLowerCase().startsWith(q))
       )
     : [];
 
