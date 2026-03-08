@@ -57,7 +57,7 @@ export function useTerm(id: string | undefined) {
         .maybeSingle();
       if (error) throw error;
       if (!data) return null;
-      return { ...data, examples: (data.examples as TermExample[]) ?? [] };
+      return { ...data, examples: (data.examples as unknown as TermExample[]) ?? [] };
     },
     enabled: !!id,
   });
