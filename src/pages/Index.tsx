@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { TermCard } from "@/components/TermCard";
@@ -7,6 +7,15 @@ import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
 import { Volume2, Terminal, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 function speakWord(word: string) {
   const utterance = new SpeechSynthesisUtterance(word);
@@ -15,12 +24,21 @@ function speakWord(word: string) {
   speechSynthesis.speak(utterance);
 }
 
+const TERMS_PER_PAGE = 12;
+
 const Index = () => {
   const { locale } = useLocale();
   const s = t(locale);
   const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories();
   const [todayTerm, setTodayTerm] = useState<Term | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(terms.length / TERMS_PER_PAGE);
+  const paginatedTerms = useMemo(
+    () => terms.slice((currentPage - 1) * TERMS_PER_PAGE, currentPage * TERMS_PER_PAGE),
+    [terms, currentPage]
+  );
 
   useEffect(() => {
     if (terms.length > 0) {
@@ -144,10 +162,50 @@ const Index = () => {
             <Badge variant="secondary" className="font-mono text-xs">{terms.length}</Badge>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {terms.map((t) => (
+            {paginatedTerms.map((t) => (
               <TermCard key={t.id} term={t} />
             ))}
           </div>
+          {totalPages > 1 && (
+            <Pagination className="mt-6">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                  />
+                </PaginationItem>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  if (totalPages <= 7 || page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1) {
+                    return (
+                      <PaginationItem key={page}>
+                        <PaginationLink
+                          isActive={page === currentPage}
+                          onClick={() => setCurrentPage(page)}
+                          className="cursor-pointer"
+                        >
+                          {page}
+                        </PaginationLink>
+                      </PaginationItem>
+                    );
+                  }
+                  if (page === 2 && currentPage > 3) {
+                    return <PaginationItem key="start-ellipsis"><PaginationEllipsis /></PaginationItem>;
+                  }
+                  if (page === totalPages - 1 && currentPage < totalPages - 2) {
+                    return <PaginationItem key="end-ellipsis"><PaginationEllipsis /></PaginationItem>;
+                  }
+                  return null;
+                })}
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                    className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
         </section>
       </div>
     </div>
