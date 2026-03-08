@@ -56,8 +56,8 @@ const Index = () => {
     if (terms.length > 0) {
       const dayIndex = new Date().getDate() % terms.length;
       setTodayTerm(terms[dayIndex]);
-      // Pick a different term for quiz sample
-      const quizIndex = (dayIndex + 3) % terms.length;
+      // Pick a different term for quiz sample, also day-based
+      const quizIndex = (dayIndex + 7) % terms.length;
       setSampleQuizTerm(terms[quizIndex]);
       setSelectedAnswer(null);
     }
@@ -66,14 +66,21 @@ const Index = () => {
   const sampleChoices = useMemo(() => {
     if (!sampleQuizTerm || terms.length < 4) return [];
     const correct = sampleQuizTerm.meaning_dev;
+    // Use a seeded shuffle based on day so choices are stable
+    const dayVal = new Date().getDate();
     const others = terms
       .filter((t) => t.id !== sampleQuizTerm.id)
-      .sort(() => Math.random() - 0.5)
+      .sort((a, b) => a.id.localeCompare(b.id))
       .slice(0, 3)
       .map((t) => t.meaning_dev);
-    return [correct, ...others].sort(() => Math.random() - 0.5);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sampleQuizTerm?.id]);
+    const all = [correct, ...others];
+    // Simple day-based deterministic shuffle
+    for (let i = all.length - 1; i > 0; i--) {
+      const j = (dayVal * (i + 1) + 7) % (i + 1);
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    return all;
+  }, [sampleQuizTerm?.id, terms]);
 
   if (termsLoading) {
     return (
@@ -199,7 +206,7 @@ const Index = () => {
           <section>
             <div className="flex items-center gap-2 mb-4">
               <span className="text-sm font-mono text-primary">$</span>
-              <h2 className="text-lg font-semibold text-foreground">{s.quiz}</h2>
+              <h2 className="text-lg font-semibold text-foreground">{s.todayQuiz}</h2>
             </div>
             <div className="relative rounded-lg border border-primary/30 bg-card p-6 overflow-hidden">
               <p className="text-sm text-muted-foreground mb-3">{s.quizPrompt}</p>
@@ -233,14 +240,23 @@ const Index = () => {
               {/* 결과 오버레이 */}
               {selectedAnswer && (
                 <div className="absolute inset-0 bg-card/95 backdrop-blur-sm flex flex-col items-center justify-center gap-4 p-6 animate-in fade-in duration-300">
-                  <p className="text-lg font-semibold text-foreground text-center">
-                    {selectedAnswer === sampleQuizTerm.meaning_dev ? "🎉 " + s.quizPerfect : "❌ " + s.quizCorrectAnswer + ": " + sampleQuizTerm.meaning_dev}
-                  </p>
+                  {selectedAnswer === sampleQuizTerm.meaning_dev ? (
+                    <p className="text-lg font-semibold text-foreground text-center">🎉 {s.quizPerfect}</p>
+                  ) : (
+                    <div className="space-y-2 text-center">
+                      <p className="text-sm text-muted-foreground">
+                        <span className="text-destructive font-medium">{s.quizYourAnswer}:</span> {selectedAnswer}
+                      </p>
+                      <p className="text-sm text-primary font-medium">
+                        {s.quizCorrectAnswer}: {sampleQuizTerm.meaning_dev}
+                      </p>
+                    </div>
+                  )}
                   <Link
                     to="/quiz"
                     className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
-                    {s.quizPromoStart} <ArrowRight className="h-4 w-4" />
+                    {s.quizMoreQuiz} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               )}

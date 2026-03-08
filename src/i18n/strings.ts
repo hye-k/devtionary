@@ -31,6 +31,7 @@ const strings = {
     categoryNotFound: "Category not found.",
     toCategoryList: "Back to categories",
     todayWord: "Word of the Day",
+    todayQuiz: "Quiz of the Day",
     viewAll: "View all",
     allTerms: "All Terms",
     detail: "Details",
@@ -73,6 +74,8 @@ const strings = {
     quizPromoTitle: "Test Your Knowledge",
     quizPromoDesc: "Think you know your dev terms? Take a quick quiz and find out!",
     quizPromoStart: "Start Quiz",
+    quizMoreQuiz: "Try More Quizzes",
+    quizYourAnswer: "Your answer",
   },
   ko: {
     categories: "카테고리",
@@ -81,6 +84,7 @@ const strings = {
     categoryNotFound: "카테고리를 찾을 수 없습니다.",
     toCategoryList: "카테고리 목록으로",
     todayWord: "오늘의 단어",
+    todayQuiz: "오늘의 퀴즈",
     viewAll: "전체 보기",
     allTerms: "전체 용어",
     detail: "자세히",
@@ -123,6 +127,8 @@ const strings = {
     quizPromoTitle: "실력을 테스트해 보세요",
     quizPromoDesc: "개발 용어, 얼마나 알고 계신가요? 퀴즈로 확인해 보세요!",
     quizPromoStart: "퀴즈 시작",
+    quizMoreQuiz: "더 많은 퀴즈 풀기",
+    quizYourAnswer: "내 답",
   },
   ja: {
     categories: "カテゴリー",
@@ -131,6 +137,7 @@ const strings = {
     categoryNotFound: "カテゴリーが見つかりません。",
     toCategoryList: "カテゴリー一覧へ",
     todayWord: "今日の単語",
+    todayQuiz: "今日のクイズ",
     viewAll: "すべて見る",
     allTerms: "すべての用語",
     detail: "詳しく",
@@ -173,6 +180,8 @@ const strings = {
     quizPromoTitle: "知識をテストしよう",
     quizPromoDesc: "開発用語、どれだけ知っていますか？クイズで確かめよう！",
     quizPromoStart: "クイズ開始",
+    quizMoreQuiz: "もっとクイズに挑戦",
+    quizYourAnswer: "あなたの回答",
   },
   fr: {
     categories: "Catégories",
@@ -181,6 +190,7 @@ const strings = {
     categoryNotFound: "Catégorie introuvable.",
     toCategoryList: "Retour aux catégories",
     todayWord: "Mot du jour",
+    todayQuiz: "Quiz du jour",
     viewAll: "Tout voir",
     allTerms: "Tous les termes",
     detail: "Détails",
@@ -223,6 +233,8 @@ const strings = {
     quizPromoTitle: "Testez vos connaissances",
     quizPromoDesc: "Vous pensez maîtriser les termes dev ? Faites le quiz pour le vérifier !",
     quizPromoStart: "Lancer le quiz",
+    quizMoreQuiz: "Plus de quiz",
+    quizYourAnswer: "Votre réponse",
   },
 } as const;
 
