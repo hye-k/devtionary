@@ -26,6 +26,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <GARouteTracker />
+          <ScrollReset />
           <MetaTags />
           <Header />
           <Routes>
