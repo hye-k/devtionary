@@ -37,6 +37,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <ScrollToTop />
         </BrowserRouter>
       </LocaleProvider>
     </TooltipProvider>
