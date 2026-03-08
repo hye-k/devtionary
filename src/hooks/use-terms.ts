@@ -92,7 +92,7 @@ export function useTerm(slug: string | undefined, locale: string = DEFAULT_LOCAL
         .from("terms")
         .select("*, term_translations!inner(*)")
         .eq("slug", slug)
-        .eq("term_translations.locale", locale)
+        .eq("term_translations.locale", dbLocale(locale))
         .maybeSingle();
       if (error) throw error;
       if (!data) return null;
