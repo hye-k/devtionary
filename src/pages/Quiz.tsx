@@ -72,7 +72,16 @@ export default function Quiz() {
   const [answers, setAnswers] = useState<(number | null)[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
 
-  const categoryTerms = useMemo(() => {
+  // Reset quiz when locale changes
+  useEffect(() => {
+    setPhase("select");
+    setSelectedCategory(null);
+    setQuestions([]);
+    setAnswers([]);
+    setCurrentQ(0);
+  }, [locale]);
+
+
     if (!selectedCategory) return terms;
     return terms.filter((t) => t.categories.includes(selectedCategory));
   }, [terms, selectedCategory]);
