@@ -137,6 +137,7 @@ const strings = {
     categoryNotFound: "カテゴリーが見つかりません。",
     toCategoryList: "カテゴリー一覧へ",
     todayWord: "今日の単語",
+    todayQuiz: "今日のクイズ",
     viewAll: "すべて見る",
     allTerms: "すべての用語",
     detail: "詳しく",
