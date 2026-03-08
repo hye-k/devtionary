@@ -129,8 +129,8 @@ const TermDetail = () => {
         <div className="space-y-3">
           {term.examples.map((ex, i) => (
             <div key={i} className="rounded-lg bg-code-bg border border-border p-4">
-              <pre className="font-mono text-sm text-foreground whitespace-pre-wrap overflow-x-auto">{ex.code}</pre>
-              <p className="mt-2 text-sm text-muted-foreground">→ {ex.translation}</p>
+              <pre className="font-mono text-sm text-foreground whitespace-pre-wrap overflow-x-auto">{highlightWord(ex.code, term.word)}</pre>
+              <p className="mt-2 text-sm text-muted-foreground">→ {highlightWord(ex.translation, term.word)}</p>
             </div>
           ))}
         </div>
