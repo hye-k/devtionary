@@ -9,7 +9,8 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { data: terms = [] } = useTerms();
+  const { locale } = useLocale();
+  const { data: terms = [] } = useTerms(locale);
 
   const filtered = query.length > 0
     ? terms.filter(

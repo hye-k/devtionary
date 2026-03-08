@@ -15,7 +15,8 @@ function speakWord(word: string) {
 }
 
 const Index = () => {
-  const { data: terms = [], isLoading: termsLoading } = useTerms();
+  const { locale } = useLocale();
+  const { data: terms = [], isLoading: termsLoading } = useTerms(locale);
   const { data: categories = [] } = useCategories();
   const [todayTerm, setTodayTerm] = useState<Term | null>(null);
 
