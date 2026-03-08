@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTerms, useCategories, Term } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
