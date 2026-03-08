@@ -14,6 +14,16 @@ function speakWord(word: string) {
   speechSynthesis.speak(utterance);
 }
 
+function highlightWord(text: string, word: string): ReactNode {
+  if (!word) return text;
+  const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  const parts = text.split(regex);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    regex.test(part) ? <span key={i} className="text-primary font-semibold">{part}</span> : part
+  );
+}
+
 const TermDetail = () => {
   const { slug } = useParams();
   const { locale } = useLocale();
