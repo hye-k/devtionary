@@ -66,14 +66,21 @@ const Index = () => {
   const sampleChoices = useMemo(() => {
     if (!sampleQuizTerm || terms.length < 4) return [];
     const correct = sampleQuizTerm.meaning_dev;
+    // Use a seeded shuffle based on day so choices are stable
+    const dayVal = new Date().getDate();
     const others = terms
       .filter((t) => t.id !== sampleQuizTerm.id)
-      .sort(() => Math.random() - 0.5)
+      .sort((a, b) => a.id.localeCompare(b.id))
       .slice(0, 3)
       .map((t) => t.meaning_dev);
-    return [correct, ...others].sort(() => Math.random() - 0.5);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sampleQuizTerm?.id]);
+    const all = [correct, ...others];
+    // Simple day-based deterministic shuffle
+    for (let i = all.length - 1; i > 0; i--) {
+      const j = (dayVal * (i + 1) + 7) % (i + 1);
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    return all;
+  }, [sampleQuizTerm?.id, terms]);
 
   if (termsLoading) {
     return (
