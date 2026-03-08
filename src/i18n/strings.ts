@@ -66,6 +66,10 @@ const strings = {
     quizKeepGoing: "Keep studying! 💪",
     quizRetry: "Try Again",
     quizCorrectAnswer: "Answer",
+    tooltipCategories: "Browse terms by category",
+    tooltipQuiz: "Test your knowledge",
+    tooltipGithub: "Report a bug or suggest a feature",
+    tooltipLanguage: "Change language",
   },
   ko: {
     categories: "카테고리",
