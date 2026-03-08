@@ -70,6 +70,9 @@ const strings = {
     tooltipQuiz: "Test your knowledge",
     tooltipGithub: "Report a bug or suggest a feature",
     tooltipLanguage: "Change language",
+    quizPromoTitle: "Test Your Knowledge",
+    quizPromoDesc: "Think you know your dev terms? Take a quick quiz and find out!",
+    quizPromoStart: "Start Quiz",
   },
   ko: {
     categories: "카테고리",
