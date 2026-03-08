@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
-import { Terminal, ChevronDown } from "lucide-react";
+import { Terminal, ChevronDown, Github } from "lucide-react";
 import { useLocale, LOCALES } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
 import {
