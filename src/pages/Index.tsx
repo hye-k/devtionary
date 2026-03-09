@@ -122,7 +122,7 @@ const Index = () => {
               <h2 className="text-lg font-semibold text-foreground">{s.todayWord}</h2>
             </div>
             <div className="rounded-lg border border-primary/30 bg-card p-6">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                 <div>
                   <Link to={`/term/${todayTerm.slug}`} className="font-mono text-2xl font-bold text-primary hover:underline">
                     {todayTerm.word}
