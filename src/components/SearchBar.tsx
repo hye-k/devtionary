@@ -24,7 +24,13 @@ function renderHighlightedText(text: string, query: string) {
   );
 }
 
-export function SearchBar({ className = "" }: { className?: string }) {
+interface SearchBarProps {
+  className?: string;
+  /** Compact mode: static "Search" placeholder, no typing animation */
+  compact?: boolean;
+}
+
+export function SearchBar({ className = "", compact = false }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -33,7 +39,9 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const navigate = useNavigate();
   const { locale } = useLocale();
   const { data: terms = [] } = useTerms(locale);
-  const animatedWord = useTypingPlaceholder(SAMPLE_TERMS);
+  const animatedWord = useTypingPlaceholder(compact ? [] : SAMPLE_TERMS);
+
+  const placeholder = compact ? "Search" : animatedWord;
 
   const q = query.trim().toLowerCase();
 
@@ -107,7 +115,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
   return (
     <div ref={ref} className={`relative overflow-visible ${className}`}>
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+        <Search className={`absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground ${compact ? "h-4 w-4" : "h-5 w-5 left-4"}`} />
         <input
           type="text"
           value={query}
@@ -118,12 +126,21 @@ export function SearchBar({ className = "" }: { className?: string }) {
           }}
           onFocus={() => setOpen(q.length > 0)}
           onKeyDown={handleKeyDown}
-          placeholder={animatedWord}
-          className="w-full rounded-lg border border-border bg-card py-3 pl-12 pr-4 font-mono text-sm text-foreground placeholder:text-muted-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
+          placeholder={placeholder}
+          className={`w-full rounded-lg border border-border bg-card font-mono text-sm text-foreground placeholder:text-muted-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+            compact ? "py-1.5 pl-9 pr-12" : "py-3 pl-12 pr-4"
+          }`}
         />
-        <span className="absolute right-4 top-1/2 hidden -translate-y-1/2 font-mono text-xs text-muted-foreground sm:block">
-          ⌘K
-        </span>
+        {compact && (
+          <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] leading-none text-muted-foreground">
+            ⌘K
+          </kbd>
+        )}
+        {!compact && (
+          <span className="absolute right-4 top-1/2 hidden -translate-y-1/2 font-mono text-xs text-muted-foreground sm:block">
+            ⌘K
+          </span>
+        )}
       </div>
 
       {open && filtered.length > 0 && (
