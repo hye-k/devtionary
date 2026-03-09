@@ -162,7 +162,7 @@ const Index = () => {
               <p className="mt-3 text-muted-foreground">{todayTerm.meaning_dev}</p>
               {todayTerm.examples[0] && (
                 <div className="mt-4 rounded-md bg-code-bg p-3 font-mono text-sm">
-                  <code className="text-foreground">{highlightWord(todayTerm.examples[0].code, todayTerm.word)}</code>
+                  <code className="text-foreground whitespace-pre-wrap">{highlightWord(todayTerm.examples[0].code, todayTerm.word)}</code>
                   <p className="mt-1 text-muted-foreground text-xs">→ {highlightWord(todayTerm.examples[0].translation, todayTerm.word)}</p>
                 </div>
               )}
