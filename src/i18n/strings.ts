@@ -98,7 +98,7 @@ const strings = {
     examples: "\uC608\uBB38",
     relatedTerms: "\uAD00\uB828 \uC6A9\uC5B4",
     termCount: (n: number) => `${n}\uAC1C \uC6A9\uC5B4`,
-    heroSubtitle: "\uAC1C\uBC1C \uC601\uC5B4 \uC0AC\uC804 \u2014 \uB9E4\uC77C \uC4F0\uB294 \uAC1C\uBC1C \uC6A9\uC5B4, \uB9BF\uC744 \uC54C\uACE0 \uC4F0\uC790",
+    heroSubtitle: "개발 영어 사전 — 매일 쓰는 개발 용어, 뜻을 알고 쓰자",
     heroCode: (kw: string, val: string, comment: string) =>
       `${kw} understanding = ${val}; ${comment}`,
     heroCodeKw: "const",
