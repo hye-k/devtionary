@@ -44,8 +44,7 @@ const strings = {
     meaningDev: "Meaning in development",
     examples: "Examples",
     relatedTerms: "Related terms",
-    }`,
-    heroSubtitle: "Developer Dictionary — Understand the terms you use every day",
+    e terms you use every day",
     heroCode: (kw: string, val: string, comment: string) =>
       `${kw} understanding = ${val}; ${comment}`,
     heroCodeKw: "const",
@@ -97,8 +96,7 @@ const strings = {
     meaningDev: "개발에서의 뜻",
     examples: "예문",
     relatedTerms: "관련 용어",
-    searchPlaceholder: "용어 이름으로 검색 (예: API, cloitle: "개발 영어 사전 — 매일 쓰는 개발 용어, 뜻을 알고 쓰자",
-    heroCode: (kw: string, val: string, comment: string) =>
+    searchPlaceholder: "용어 이름으로 검색 (예: API, cloitle: "개발 영어 사전 — 매일 쓰는 개발 용어, nt: string) =>
       `${kw} understanding = ${val}; ${comment}`,
     heroCodeKw: "const",
     heroCodeVal: "true",
@@ -151,7 +149,7 @@ const strings = {
     relatedTerms: "関連用語",
     searchPlaceholder: "用語名で検索（例: API, closure）",
     termCount: (n: number) => `${n}件の用語`,
-    heroSubtitle: "開発英語辞典 — 毎日使う開発用語、意味を知って使おう",
+    heroSubtitl知って使おう",
     heroCode: (kw: string, val: string, comment: string) =>
       `${kw} understanding = ${val}; ${comment}`,
     heroCodeKw: "const",
