@@ -44,7 +44,7 @@ const strings = {
     meaningDev: "Meaning in development",
     examples: "Examples",
     relatedTerms: "Related terms",
-    searchPlaceholder: "Search terms... (English)",
+    searchPlaceholder: "Search by term name (e.g. API, closure)",
     termCount: (n: number) => `${n} term${n !== 1 ? "s" : ""}`,
     heroSubtitle: "Developer Dictionary — Understand the terms you use every day",
     heroCode: (kw: string, val: string, comment: string) =>
