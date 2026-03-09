@@ -69,8 +69,8 @@ export function Header() {
 
         {!isMobile && (
           <>
-            <SearchBar className="flex-1 max-w-xs" />
             <nav className="ml-auto flex items-center gap-4 shrink-0">
+              <SearchBar compact className="w-44" />
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
