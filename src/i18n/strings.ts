@@ -44,8 +44,7 @@ const strings = {
     meaningDev: "Meaning in development",
     examples: "Examples",
     relatedTerms: "Related terms",
-    e terms you use every day",
-    heroCode: (kw: string, val: string, comment: string) =>
+    tring, comment: string) =>
       `${kw} understanding = ${val}; ${comment}`,
     heroCodeKw: "const",
     heroCodeVal: "true",
@@ -97,10 +96,7 @@ const strings = {
     examples: "예문",
     relatedTerms: "관련 용어",
     searchPlaceholder: "용어 이름으로 검색 (예: API, cloitle: "개발 영어 사전 — 매일 쓰는 개발 용어, nt: string) =>
-      `${kw} understanding = ${val}; ${comment}`,
-    heroCodeKw: "const",
-    heroCodeVal: "true",
-    heroCodeComment: "// 이해하고 쓰는 것과 모르고 쓰는 것은 천지차이",
+      `${kw} understanding = ${val}; ${commentmment: "// 이해하고 쓰는 것과 모르고 쓰는 것은 천지차이",
     loading: "loading...",
     quiz: "퀴즈",
     quizDescription: "개발 용어 실력을 테스트해 보세요! 카테고리를 선택하고 10문제를 풀어보세요.",
@@ -151,10 +147,7 @@ const strings = {
     termCount: (n: number) => `${n}件の用語`,
     heroSubtitl知って使おう",
     heroCode: (kw: string, val: string, comment: string) =>
-      `${kw} understanding = ${val}; ${comment}`,
-    heroCodeKw: "const",
-    heroCodeVal: "true",
-    heroCodeComment: "// 理解して使うのと知らずに使うのは天地の差",
+      `${kw} understanding = ${val}; ${comment}`eComment: "// 理解して使うのと知らずに使うのは天地の差",
     loading: "loading...",
     quiz: "クイズ",
     quizDescription: "開発用語の知識をテストしましょう！カテゴリーを選んで10問に挑戦。",
@@ -203,8 +196,7 @@ const strings = {
     relatedTerms: "Termes associés",
     searchPlaceholder: "Rechercher par nom (ex : API, closure)",
     termCount: (n: number) => `${n} terme${n > 1 ? "s" : ""}`,
-    heroSubtitle: "Dictionnaire du développeur — Comprendre les termes que vous utilisez chaque jour",
-    heroCode: (kw: string, val: string, comment: string) =>
+    heroSubtitle: "Dictionnaire du développeur — Comprendre les ting, val: string, comment: string) =>
       `${kw} understanding = ${val}; ${comment}`,
     heroCodeKw: "const",
     heroCodeVal: "true",
