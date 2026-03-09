@@ -238,6 +238,14 @@ export default function Quiz() {
   return (
     <div className="min-h-screen">
       <div className="container py-10 max-w-2xl space-y-8">
+        {/* Back link — same position as quiz phase */}
+        <Link
+          to="/quiz"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="h-4 w-4" /> {s.quiz}
+        </Link>
+
         {/* Score */}
         <Card className="border-primary/30 text-center">
           <CardContent className="pt-8 pb-6 space-y-4">
@@ -253,12 +261,9 @@ export default function Quiz() {
                   : s.quizKeepGoing}
             </p>
             <Progress value={(score / questions.length) * 100} className="h-3 max-w-xs mx-auto" />
-            <div className="flex justify-center gap-3 mt-4">
+            <div className="flex justify-center mt-4">
               <Button onClick={retry} variant="outline">
                 <RotateCcw className="h-4 w-4 mr-1" /> {s.quizRetry}
-              </Button>
-              <Button onClick={() => navigate("/quiz")} variant="ghost">
-                <ArrowLeft className="h-4 w-4 mr-1" /> {s.quiz}
               </Button>
             </div>
           </CardContent>
