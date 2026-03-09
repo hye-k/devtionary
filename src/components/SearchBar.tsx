@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
-import { t } from "@/i18n/strings";
+import { useTypingPlaceholder } from "@/hooks/use-typing-placeholder";
 
 const ITEM_HEIGHT = 48;
 const VISIBLE_ITEMS = 4.5;
+
+const SAMPLE_TERMS = ["API", "closure", "refactor", "deploy", "middleware", "callback"];
 
 function renderHighlightedText(text: string, query: string) {
   if (!query || !text.toLowerCase().startsWith(query.toLowerCase())) return text;
@@ -31,7 +33,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
   const navigate = useNavigate();
   const { locale } = useLocale();
   const { data: terms = [] } = useTerms(locale);
-  const s = t(locale);
+  const animatedWord = useTypingPlaceholder(SAMPLE_TERMS);
 
   const q = query.trim().toLowerCase();
 
@@ -116,7 +118,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
           }}
           onFocus={() => setOpen(q.length > 0)}
           onKeyDown={handleKeyDown}
-          placeholder={s.searchPlaceholder}
+          placeholder={animatedWord}
           className="w-full rounded-lg border border-border bg-card py-3 pl-12 pr-4 font-mono text-sm text-foreground placeholder:text-muted-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
         />
         <span className="absolute right-4 top-1/2 hidden -translate-y-1/2 font-mono text-xs text-muted-foreground sm:block">
@@ -154,4 +156,3 @@ export function SearchBar({ className = "" }: { className?: string }) {
     </div>
   );
 }
-
