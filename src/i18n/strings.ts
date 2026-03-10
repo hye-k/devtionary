@@ -189,6 +189,7 @@ const strings = {
   fr: {
     categories: "Catégories",
     allCategories: "Catégories",
+    categoriesDescription: "Parcourez les termes de développement par thème. Choisissez une catégorie pour explorer.",
     categoryList: "Liste des catégories",
     categoryNotFound: "Catégorie introuvable.",
     toCategoryList: "Retour aux catégories",
