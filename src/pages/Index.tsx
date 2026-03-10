@@ -263,8 +263,8 @@ const Index = () => {
         {/* 전체 용어 */}
         <section>
           <div className="flex items-center gap-2 mb-3 md:mb-4">
-            <span className="text-xs md:text-sm font-mono text-primary">$</span>
-            <h2 className="text-base md:text-lg font-semibold text-foreground">{s.allTerms}</h2>
+            <span className="text-sm md:text-base font-mono text-primary">$</span>
+            <h2 className="font-mono text-lg md:text-xl font-bold text-foreground">{s.allTerms}</h2>
             <Badge variant="secondary" className="font-mono text-xs">{terms.length}</Badge>
           </div>
           <div className="grid gap-2 md:gap-3 sm:grid-cols-2 lg:grid-cols-3">
