@@ -115,7 +115,7 @@ export function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="z-[100] w-72 flex flex-col gap-0 pt-14">
+              <SheetContent side="right" className="z-[100] w-72 flex flex-col gap-0 pt-14" onOpenAutoFocus={(e) => e.preventDefault()}>
                 <SheetTitle className="sr-only">{s.menu}</SheetTitle>
                 <div className="pb-4 border-b border-border">
                   <SearchBar className="w-full" />
