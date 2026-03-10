@@ -216,18 +216,7 @@ export default function Quiz() {
             )}
           </div>
 
-          {/* Quick nav dots */}
-          <div className="flex justify-center gap-1 md:gap-1.5 flex-wrap">
-            {questions.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentQ(i)}
-                className={`h-2.5 w-2.5 md:h-3 md:w-3 rounded-full transition-all ${
-                  i === currentQ ? "bg-primary scale-125" : answers[i] !== null ? "bg-primary/40" : "bg-secondary"
-                }`}
-              />
-            ))}
-          </div>
+
         </div>
       </div>
     );
