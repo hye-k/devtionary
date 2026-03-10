@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useTerm, useTerms, useCategories } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
@@ -27,6 +27,7 @@ function highlightWord(text: string, word: string): ReactNode {
 
 const TermDetail = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const { locale } = useLocale();
   const s = t(locale);
   const { data: term, isLoading } = useTerm(slug, locale);
@@ -69,9 +70,9 @@ const TermDetail = () => {
         description={`${term.meaning_word}. ${term.meaning_dev}`}
         ipa={term.ipa}
       />
-      <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6 transition-colors">
+      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6 transition-colors">
         <ArrowLeft className="h-4 w-4" /> {s.goBack}
-      </Link>
+      </button>
 
       {/* Header */}
       <div className="mb-6 md:mb-8">
