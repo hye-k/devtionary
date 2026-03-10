@@ -135,6 +135,7 @@ const strings = {
   ja: {
     categories: "カテゴリー",
     allCategories: "カテゴリー",
+    categoriesDescription: "トピック別に整理された開発用語を探索しましょう。カテゴリーを選んでご覧ください。",
     categoryList: "カテゴリー一覧",
     categoryNotFound: "カテゴリーが見つかりません。",
     toCategoryList: "カテゴリー一覧へ",
