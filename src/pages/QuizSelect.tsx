@@ -27,8 +27,7 @@ export default function QuizSelect() {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="container py-6 md:py-8 lg:py-10 space-y-4 md:space-y-6 lg:space-y-8">
+    <div className="container py-6 md:py-8 lg:py-10 space-y-4 md:space-y-6 lg:space-y-8">
         <div>
           <Link
             to="/"
