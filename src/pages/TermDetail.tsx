@@ -69,9 +69,9 @@ const TermDetail = () => {
         description={`${term.meaning_word}. ${term.meaning_dev}`}
         ipa={term.ipa}
       />
-      <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6 transition-colors">
+      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6 transition-colors">
         <ArrowLeft className="h-4 w-4" /> {s.goBack}
-      </Link>
+      </button>
 
       {/* Header */}
       <div className="mb-6 md:mb-8">
