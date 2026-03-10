@@ -73,6 +73,5 @@ export default function QuizSelect() {
           })}
         </div>
       </div>
-    </div>
   );
 }
