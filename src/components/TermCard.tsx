@@ -19,14 +19,14 @@ export function TermCard({ term }: { term: Term }) {
   return (
     <Link
       to={`/term/${term.slug}`}
-      className="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 animate-fade-in"
+      className="group block rounded-lg border border-border bg-card p-4 md:p-5 lg:p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 animate-fade-in"
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <h3 className="font-mono text-lg font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+          <h3 className="font-mono text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors truncate">
             {term.word}
           </h3>
-          <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="mt-1 flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-muted-foreground">
             <span className="font-mono text-xs">{term.ipa}</span>
             <span className="text-terminal-dim">·</span>
             <span>{term.pronunciation_local}</span>
@@ -37,24 +37,24 @@ export function TermCard({ term }: { term: Term }) {
             e.preventDefault();
             speakWord(term.word);
           }}
-          className="shrink-0 rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-primary transition-colors"
+          className="shrink-0 rounded-md p-1.5 md:p-2 text-muted-foreground hover:bg-secondary hover:text-primary transition-colors"
           aria-label={`${term.word} 발음 듣기`}
         >
-          <Volume2 className="h-4 w-4" />
+          <Volume2 className="h-3.5 w-3.5 md:h-4 md:w-4" />
         </button>
       </div>
 
       {term.abbreviation_of && (
-        <p className="mt-2 font-mono text-xs text-accent">
+        <p className="mt-1.5 md:mt-2 font-mono text-xs text-accent">
           ← {term.abbreviation_of}
         </p>
       )}
 
-      <p className="mt-3 text-sm text-muted-foreground line-clamp-2">
+      <p className="mt-2 md:mt-3 text-xs md:text-sm text-muted-foreground line-clamp-2">
         {term.meaning_dev}
       </p>
 
-      <div className="mt-3 flex flex-wrap gap-1.5">
+      <div className="mt-2 md:mt-3 flex flex-wrap gap-1 md:gap-1.5">
         {term.categories.map((catSlug) => {
           const cat = categories.find((c) => c.slug === catSlug);
           return (
