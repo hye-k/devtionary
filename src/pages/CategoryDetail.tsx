@@ -33,21 +33,21 @@ const CategoryDetail = () => {
   }
 
   return (
-    <div className="container py-8">
-      <Link to="/categories" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
+    <div className="container py-6 md:py-8 lg:py-10">
+      <Link to="/categories" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6 transition-colors">
         <ArrowLeft className="h-4 w-4" /> {s.categoryList}
       </Link>
 
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-3xl">{category.icon}</span>
-          <h1 className="font-mono text-2xl font-bold text-foreground">{category.name}</h1>
+      <div className="mb-4 md:mb-6">
+        <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+          <span className="text-2xl md:text-3xl">{category.icon}</span>
+          <h1 className="font-mono text-xl md:text-2xl lg:text-3xl font-bold text-foreground">{category.name}</h1>
           <Badge variant="secondary" className="font-mono text-xs">{catTerms.length}</Badge>
         </div>
-        <p className="text-muted-foreground">{category.description}</p>
+        <p className="text-sm md:text-base text-muted-foreground">{category.description}</p>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-2 md:gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {catTerms.map((t) => (
           <TermCard key={t.id} term={t} />
         ))}

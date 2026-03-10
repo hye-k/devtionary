@@ -68,7 +68,6 @@ export default function Quiz() {
   const [answers, setAnswers] = useState<(number | null)[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
 
-  // Generate questions when terms load or slug/locale changes
   useEffect(() => {
     if (terms.length === 0) return;
     const pool = selectedCategory ? terms.filter((t) => t.categories.includes(selectedCategory)) : terms;
@@ -128,20 +127,20 @@ export default function Quiz() {
     const q = questions[currentQ];
     return (
       <div className="min-h-screen">
-      <div className="container py-4 md:py-10 max-w-2xl space-y-3 md:space-y-6">
+        <div className="container py-6 md:py-8 lg:py-10 max-w-2xl space-y-4 md:space-y-5 lg:space-y-6">
           {/* Category header */}
           <div>
             <Link
               to="/quiz"
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-3 md:mb-6 transition-colors"
+              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" /> {s.quiz}
             </Link>
 
-            <div className="mb-3 md:mb-6">
-              <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+            <div className="mb-4 md:mb-6">
+              <div className="flex items-center gap-2 md:gap-3 mb-1">
                 <span className="text-2xl md:text-3xl">{selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.icon : "🎲"}</span>
-                <h1 className="font-mono text-xl md:text-2xl font-bold text-foreground">
+                <h1 className="font-mono text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
                   {selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.name : s.quizAllCategories}
                 </h1>
               </div>
@@ -149,7 +148,7 @@ export default function Quiz() {
           </div>
 
           {/* Progress */}
-          <div className="space-y-1 md:space-y-2">
+          <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs md:text-sm text-muted-foreground font-mono">
               <span>
                 {s.quizQuestion} {currentQ + 1} / {questions.length}
@@ -163,12 +162,12 @@ export default function Quiz() {
 
           {/* Question Card */}
           <Card className="border-primary/20">
-            <CardHeader className="pb-2 md:pb-3 px-4 md:px-6 pt-4 md:pt-6">
-              <CardTitle className="font-mono text-base md:text-lg text-primary">{s.quizPrompt}</CardTitle>
+            <CardHeader className="pb-2 md:pb-3 px-4 md:px-5 lg:px-6 pt-4 md:pt-5 lg:pt-6">
+              <CardTitle className="font-mono text-sm md:text-base lg:text-lg text-primary">{s.quizPrompt}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 md:space-y-4 px-4 md:px-6 pb-4 md:pb-6">
+            <CardContent className="space-y-3 md:space-y-4 px-4 md:px-5 lg:px-6 pb-4 md:pb-5 lg:pb-6">
               {/* Term word */}
-              <div className="rounded-md bg-code-bg p-4 md:p-6 text-center">
+              <div className="rounded-md bg-code-bg p-4 md:p-5 lg:p-6 text-center">
                 <span className="font-mono text-xl md:text-2xl font-bold text-primary">{q.term.word}</span>
               </div>
 
@@ -237,8 +236,7 @@ export default function Quiz() {
   /* ── Results ── */
   return (
     <div className="min-h-screen">
-      <div className="container py-10 max-w-2xl space-y-8">
-        {/* Back link — same position as quiz phase */}
+      <div className="container py-6 md:py-8 lg:py-10 max-w-2xl space-y-4 md:space-y-6 lg:space-y-8">
         <Link
           to="/quiz"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -248,20 +246,20 @@ export default function Quiz() {
 
         {/* Score */}
         <Card className="border-primary/30 text-center">
-          <CardContent className="pt-8 pb-6 space-y-4">
-            <Trophy className="h-12 w-12 text-primary mx-auto" />
-            <h2 className="font-mono text-3xl font-bold text-foreground">
+          <CardContent className="pt-6 md:pt-8 pb-4 md:pb-6 space-y-3 md:space-y-4">
+            <Trophy className="h-10 w-10 md:h-12 md:w-12 text-primary mx-auto" />
+            <h2 className="font-mono text-2xl md:text-3xl font-bold text-foreground">
               {score} / {questions.length}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               {score === questions.length
                 ? s.quizPerfect
                 : score >= questions.length * 0.7
                   ? s.quizGreat
                   : s.quizKeepGoing}
             </p>
-            <Progress value={(score / questions.length) * 100} className="h-3 max-w-xs mx-auto" />
-            <div className="flex justify-center mt-4">
+            <Progress value={(score / questions.length) * 100} className="h-2 md:h-3 max-w-xs mx-auto" />
+            <div className="flex justify-center mt-3 md:mt-4">
               <Button onClick={retry} variant="outline">
                 <RotateCcw className="h-4 w-4 mr-1" /> {s.quizRetry}
               </Button>
@@ -270,23 +268,23 @@ export default function Quiz() {
         </Card>
 
         {/* Review */}
-        <div className="space-y-3">
+        <div className="space-y-2 md:space-y-3">
           {questions.map((q, i) => {
             const chosen = answers[i];
             const isCorrect = chosen !== null && q.options[chosen] === q.correctAnswer;
             return (
               <Card key={i} className={`border-l-4 ${isCorrect ? "border-l-primary" : "border-l-destructive"}`}>
-                <CardContent className="py-4 space-y-2">
+                <CardContent className="py-3 md:py-4 px-4 md:px-5 lg:px-6 space-y-1.5 md:space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
                       {isCorrect ? (
-                        <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0" />
                       ) : (
-                        <XCircle className="h-5 w-5 text-destructive shrink-0" />
+                        <XCircle className="h-4 w-4 md:h-5 md:w-5 text-destructive shrink-0" />
                       )}
                       <Link
                         to={`/term/${q.term.slug}`}
-                        className="font-mono font-bold text-foreground hover:text-primary transition-colors"
+                        className="font-mono text-sm md:text-base font-bold text-foreground hover:text-primary transition-colors"
                       >
                         {q.term.word}
                       </Link>
@@ -300,9 +298,9 @@ export default function Quiz() {
                   </div>
                   <p className="text-xs text-muted-foreground">{q.exampleTranslation}</p>
                   {!isCorrect && chosen !== null && (
-                    <p className="text-sm text-destructive line-through">{q.options[chosen]}</p>
+                    <p className="text-xs md:text-sm text-destructive line-through">{q.options[chosen]}</p>
                   )}
-                  <p className="text-sm text-primary">
+                  <p className="text-xs md:text-sm text-primary">
                     {s.quizCorrectAnswer}: {q.correctAnswer}
                   </p>
                 </CardContent>
