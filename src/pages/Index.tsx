@@ -202,8 +202,8 @@ const Index = () => {
         {sampleQuizTerm && sampleChoices.length === 4 && (
           <section>
             <div className="flex items-center gap-2 mb-3 md:mb-4">
-              <span className="text-xs md:text-sm font-mono text-primary">$</span>
-              <h2 className="text-base md:text-lg font-semibold text-foreground">{s.todayQuiz}</h2>
+              <span className="text-sm md:text-base font-mono text-primary">$</span>
+              <h2 className="font-mono text-lg md:text-xl font-bold text-foreground">{s.todayQuiz}</h2>
             </div>
             <div className="relative rounded-lg border border-primary/30 bg-card p-4 md:p-5 lg:p-6 overflow-hidden">
               <p className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-3">{s.quizPrompt}</p>
