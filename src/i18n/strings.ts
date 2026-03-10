@@ -27,6 +27,7 @@ const strings = {
   en: {
     categories: "Categories",
     allCategories: "Categories",
+    categoriesDescription: "Browse developer terms organized by topic. Pick a category to explore.",
     categoryList: "Category List",
     categoryNotFound: "Category not found.",
     toCategoryList: "Back to categories",
