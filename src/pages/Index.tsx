@@ -115,8 +115,8 @@ const Index = () => {
         {todayTerm && (
           <section>
             <div className="flex items-center gap-2 mb-3 md:mb-4">
-              <span className="text-xs md:text-sm font-mono text-primary">$</span>
-              <h2 className="text-base md:text-lg font-semibold text-foreground">{s.todayWord}</h2>
+              <span className="text-sm md:text-base font-mono text-primary">$</span>
+              <h2 className="font-mono text-lg md:text-xl font-bold text-foreground">{s.todayWord}</h2>
             </div>
             <div className="rounded-lg border border-primary/30 bg-card p-4 md:p-5 lg:p-6">
               <div className="flex flex-col sm:flex-row items-start justify-between gap-3 md:gap-4">
