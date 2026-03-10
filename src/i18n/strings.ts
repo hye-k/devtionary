@@ -81,6 +81,7 @@ const strings = {
   ko: {
     categories: "카테고리",
     allCategories: "카테고리",
+    categoriesDescription: "주제별로 정리된 개발 용어를 둘러보세요. 카테고리를 선택해 탐색하세요.",
     categoryList: "카테고리 목록",
     categoryNotFound: "카테고리를 찾을 수 없습니다.",
     toCategoryList: "카테고리 목록으로",
