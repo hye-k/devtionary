@@ -27,6 +27,7 @@ function highlightWord(text: string, word: string): ReactNode {
 
 const TermDetail = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const { locale } = useLocale();
   const s = t(locale);
   const { data: term, isLoading } = useTerm(slug, locale);
