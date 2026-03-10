@@ -27,6 +27,7 @@ const strings = {
   en: {
     categories: "Categories",
     allCategories: "Categories",
+    categoriesDescription: "Browse developer terms organized by topic. Pick a category to explore.",
     categoryList: "Category List",
     categoryNotFound: "Category not found.",
     toCategoryList: "Back to categories",
@@ -80,6 +81,7 @@ const strings = {
   ko: {
     categories: "카테고리",
     allCategories: "카테고리",
+    categoriesDescription: "주제별로 정리된 개발 용어를 둘러보세요. 카테고리를 선택해 탐색하세요.",
     categoryList: "카테고리 목록",
     categoryNotFound: "카테고리를 찾을 수 없습니다.",
     toCategoryList: "카테고리 목록으로",
@@ -133,6 +135,7 @@ const strings = {
   ja: {
     categories: "カテゴリー",
     allCategories: "カテゴリー",
+    categoriesDescription: "トピック別に整理された開発用語を探索しましょう。カテゴリーを選んでご覧ください。",
     categoryList: "カテゴリー一覧",
     categoryNotFound: "カテゴリーが見つかりません。",
     toCategoryList: "カテゴリー一覧へ",
@@ -186,6 +189,7 @@ const strings = {
   fr: {
     categories: "Catégories",
     allCategories: "Catégories",
+    categoriesDescription: "Parcourez les termes de développement par thème. Choisissez une catégorie pour explorer.",
     categoryList: "Liste des catégories",
     categoryNotFound: "Catégorie introuvable.",
     toCategoryList: "Retour aux catégories",

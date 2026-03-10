@@ -3,7 +3,7 @@ import { useCategories, useTerms } from "@/hooks/use-terms";
 import { useLocale } from "@/hooks/use-locale";
 import { t } from "@/i18n/strings";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const Categories = () => {
   const { locale } = useLocale();
@@ -13,15 +13,25 @@ const Categories = () => {
 
   usePageMeta({
     title: `${s.allCategories} - Devtionary`,
-    description: s.heroSubtitle,
+    description: s.categoriesDescription,
     path: "/categories",
   });
 
   return (
-    <div className="container py-6 md:py-8 lg:py-10">
-      <h1 className="font-mono text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-4 md:mb-6">
-        <span className="text-primary">$</span> {s.allCategories}
-      </h1>
+    <div className="container py-6 md:py-8 lg:py-10 space-y-4 md:space-y-6 lg:space-y-8">
+      <div>
+        <Link
+          to="/"
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mb-4 md:mb-6"
+        >
+          <ArrowLeft className="h-3 w-3" /> {s.goHome}
+        </Link>
+        <h1 className="font-mono text-xl md:text-2xl lg:text-3xl font-bold text-foreground flex items-center gap-2">
+          <span className="text-primary">$</span> {s.allCategories}
+        </h1>
+        <p className="text-sm md:text-base text-muted-foreground mt-2">{s.categoriesDescription}</p>
+      </div>
+
       <div className="grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((cat) => {
           const catTerms = terms.filter((t) => t.categories.includes(cat.slug));
