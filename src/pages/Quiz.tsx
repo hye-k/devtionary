@@ -128,20 +128,20 @@ export default function Quiz() {
     const q = questions[currentQ];
     return (
       <div className="min-h-screen">
-        <div className="container py-10 max-w-2xl space-y-6">
-          {/* Category header — matches /category/:slug design */}
+      <div className="container py-4 md:py-10 max-w-2xl space-y-3 md:space-y-6">
+          {/* Category header */}
           <div>
             <Link
               to="/quiz"
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
+              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-3 md:mb-6 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" /> {s.quiz}
             </Link>
 
-            <div className="mb-6">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-3xl">{selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.icon : "🎲"}</span>
-                <h1 className="font-mono text-2xl font-bold text-foreground">
+            <div className="mb-3 md:mb-6">
+              <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+                <span className="text-2xl md:text-3xl">{selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.icon : "🎲"}</span>
+                <h1 className="font-mono text-xl md:text-2xl font-bold text-foreground">
                   {selectedCategory ? categories.find((c) => c.slug === selectedCategory)?.name : s.quizAllCategories}
                 </h1>
               </div>
@@ -149,8 +149,8 @@ export default function Quiz() {
           </div>
 
           {/* Progress */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
+          <div className="space-y-1 md:space-y-2">
+            <div className="flex items-center justify-between text-xs md:text-sm text-muted-foreground font-mono">
               <span>
                 {s.quizQuestion} {currentQ + 1} / {questions.length}
               </span>
@@ -158,29 +158,29 @@ export default function Quiz() {
                 {answers.filter((a) => a !== null).length} {s.quizAnswered}
               </span>
             </div>
-            <Progress value={((currentQ + 1) / questions.length) * 100} className="h-2" />
+            <Progress value={((currentQ + 1) / questions.length) * 100} className="h-1.5 md:h-2" />
           </div>
 
           {/* Question Card */}
           <Card className="border-primary/20">
-            <CardHeader className="pb-3">
-              <CardTitle className="font-mono text-lg text-primary">{s.quizPrompt}</CardTitle>
+            <CardHeader className="pb-2 md:pb-3 px-4 md:px-6 pt-4 md:pt-6">
+              <CardTitle className="font-mono text-base md:text-lg text-primary">{s.quizPrompt}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 md:space-y-4 px-4 md:px-6 pb-4 md:pb-6">
               {/* Term word */}
-              <div className="rounded-md bg-code-bg p-6 text-center">
-                <span className="font-mono text-2xl font-bold text-primary">{q.term.word}</span>
+              <div className="rounded-md bg-code-bg p-4 md:p-6 text-center">
+                <span className="font-mono text-xl md:text-2xl font-bold text-primary">{q.term.word}</span>
               </div>
 
               {/* Options */}
-              <div className="grid gap-2">
+              <div className="grid gap-1.5 md:gap-2">
                 {q.options.map((opt, i) => {
                   const isSelected = answers[currentQ] === i;
                   return (
                     <button
                       key={i}
                       onClick={() => selectAnswer(currentQ, i)}
-                      className={`text-left rounded-lg border p-3 text-sm transition-all ${
+                      className={`text-left rounded-lg border p-2.5 md:p-3 text-xs md:text-sm transition-all ${
                         isSelected
                           ? "border-primary bg-primary/10 text-foreground"
                           : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"
@@ -218,12 +218,12 @@ export default function Quiz() {
           </div>
 
           {/* Quick nav dots */}
-          <div className="flex justify-center gap-1.5 flex-wrap">
+          <div className="flex justify-center gap-1 md:gap-1.5 flex-wrap">
             {questions.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentQ(i)}
-                className={`h-3 w-3 rounded-full transition-all ${
+                className={`h-2.5 w-2.5 md:h-3 md:w-3 rounded-full transition-all ${
                   i === currentQ ? "bg-primary scale-125" : answers[i] !== null ? "bg-primary/40" : "bg-secondary"
                 }`}
               />
